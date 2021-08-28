@@ -31,7 +31,7 @@ router.post('/register',async (req,res)=>{
     const salt = await bcryptjs.genSalt(10)
     const hashPassPhrase = await bcryptjs.hash(req.body.password, salt)
 
-       const cook = new Cook({
+    const cook = new Cook({
         chefName: req.body.chefName,
         address: req.body.address,
         age: req.body.age,

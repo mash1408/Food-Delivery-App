@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const Cook= require('./Routes/routesCook')
 const Customer= require('./Routes/routesCustomer')
+const menu =require('./Routes/listMenu')
 
 dotenv.config();
 
@@ -26,7 +27,7 @@ app.use(express.json())
 //Middleware for authentification
 app.use('/cook', Cook)
 app.use('/customer', Customer)
-
+app.use('/home', menu)
 
 
 
