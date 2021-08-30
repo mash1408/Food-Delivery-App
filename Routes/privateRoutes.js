@@ -2,6 +2,8 @@ const router =require('express').Router()
 const verify =require('./verifyJWT')
 const Cook =require('../models/Cooks')
 const menu = require('../models/menu')
+var multiparty = require('connect-multiparty'),
+    multipartyMiddleware = multiparty({ uploadDir: './Dishes' });
 
 router.get('/dashboard',verify,async (req,res)=>{
     // res.json({
@@ -25,10 +27,12 @@ router.get('/your-items',verify,async (req,res)=>{
 
 })
 
-router.post('/save-menu-item',verify,async (req,res)=>{
+router.post('/save-menu-item',[verify, multipartyMiddleware],async (req,res)=>{
     const cook = await Cook.findOne({
         _id: req.user
     })
+    console.log(req.body, req.files);
+    var file = req.files.file;
     const menuItem = new menu({
         dishName: req.body.dishName,
         description: req.body.description,
@@ -36,12 +40,13 @@ router.post('/save-menu-item',verify,async (req,res)=>{
         recipe: req.body.recipe,
         cook_id: cook._id
     })
-    const changeStream = menu.watch().on('change', data => console.log(data));
+    //const changeStream = menu.watch().on('change', data => console.log(data));
     try{
+        
         const savedMenuItem= await menuItem.save()
         res.send({
             status: 200,
-            dishName: req.dishName
+            dishName: req.body.dishName
         })
         
     }
@@ -49,6 +54,7 @@ router.post('/save-menu-item',verify,async (req,res)=>{
         res.status(400).send(err)
     }
 })
+
 router.delete('/delete-menu-item/:dishName',verify,async function (req, res) {
     const dish =await menu.findOne({
         cook_id: req.user,

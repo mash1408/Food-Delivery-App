@@ -6,7 +6,7 @@ const Cook= require('./Routes/routesCook')
 const Customer= require('./Routes/routesCustomer')
 const menu =require('./Routes/listMenu')
 var schedule = require('node-schedule')
-
+const bodyParser=require('body-parser')
 dotenv.config();
 
 //connect to DB
@@ -25,7 +25,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 //MiddleWares
 app.use(express.json())
-
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //Middleware for authentification
 app.use('/cook', Cook)

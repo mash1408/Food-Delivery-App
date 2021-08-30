@@ -61,8 +61,8 @@ router.post('/login',async (req,res)=>{
     const token= jwt.sign({
         _id: cook.id
     },
-    process.env.SECRET_CODE_COOK)
-    res.header('auth-token-cook', token).send(token)
+    process.env.SECRET_CODE_CUSTOMER)
+    res.header('auth-token-customer', token).send(token)
 })
 
 
