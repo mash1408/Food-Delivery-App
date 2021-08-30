@@ -24,6 +24,7 @@ router.get('/your-items',verify,async (req,res)=>{
     res.send(menuItems)
 
 })
+
 router.post('/save-menu-item',verify,async (req,res)=>{
     const cook = await Cook.findOne({
         _id: req.user
@@ -35,6 +36,7 @@ router.post('/save-menu-item',verify,async (req,res)=>{
         recipe: req.body.recipe,
         cook_id: cook._id
     })
+    const changeStream = menu.watch().on('change', data => console.log(data));
     try{
         const savedMenuItem= await menuItem.save()
         res.send({
@@ -47,4 +49,37 @@ router.post('/save-menu-item',verify,async (req,res)=>{
         res.status(400).send(err)
     }
 })
+router.delete('/delete-menu-item/:dishName',verify,async function (req, res) {
+    const dish =await menu.findOne({
+        cook_id: req.user,
+        dishName: req.params.dishName
+    })
+    if(!dish){
+        res.status(300).send('You are unauthorized to remove this dish')
+        return
+    }
+   
+    try{
+      await  menu.findOneAndRemove({
+                dishName: req.params.dishName
+            } ,
+                    function (err, dish) {
+                if (err){
+                    console.log(err)
+                }
+                else{
+                    console.log("Removed Dish : ", dish);
+                }
+                });
+        res.send({
+            status: 200,
+            dishName: req.dishName
+        })
+        
+    }
+    catch(err){
+        res.status(400).send(err)
+    }
+
+  })
 module.exports= router
