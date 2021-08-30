@@ -2,6 +2,7 @@ const router =require('express').Router()
 const verify =require('./verifyJWT')
 const Cook =require('../models/Cooks')
 const menu = require('../models/menu')
+const fs =require('fs')
 var multiparty = require('connect-multiparty'),
     multipartyMiddleware = multiparty({ uploadDir: './Dishes' });
 
@@ -31,7 +32,9 @@ router.post('/save-menu-item',[verify, multipartyMiddleware],async (req,res)=>{
     const cook = await Cook.findOne({
         _id: req.user
     })
-    console.log(req.body, req.files);
+    fs.rename('./'+ req.files.null.path,'./Dishes/'+req.body.dishName+'.png',()=>{
+       console.log('Dish saved')
+    })
     var file = req.files.file;
     const menuItem = new menu({
         dishName: req.body.dishName,
