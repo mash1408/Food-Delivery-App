@@ -1,0 +1,49 @@
+import React, {Component} from "react";
+import {Link} from 'react-router-dom';
+import axios  from "axios";
+
+export default class Login extends Component {
+    render(){
+        return(
+            <div class="flex justify-center">
+                <div class="border-4 border-yellow-500 px-8 py-4 rounded-lg w-96 mt-10">
+                <div>
+                    <p class="text-2xl font-semibold mt-2">Sign In</p>
+                </div>
+                <form class="my-2">
+                <div class="mb-2">
+                    <label class="block text-gray-700 mb-1 text-left text-sm" for="phone">
+                        Phone number
+                    </label>
+                    <input class="appearance-none border-2 rounded w-full py-2 px-3 text-gray-700 text-sm font-semibold leading-tight focus:outline-none focus:shadow-outline focus:border-yellow-500" id="phone" type="text" placeholder="Phone Number"/>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-1 text-left text-sm" for="password">
+                        Passoword
+                    </label>
+                    <input class="appearance-none border-2 rounded w-full py-2 px-3 text-gray-700  text-sm font-semibold  leading-tight focus:outline-none focus:shadow-outline focus:border-yellow-500" id="password" type="password" placeholder="Password"/>
+                </div>
+
+                <div class="mb-2">
+                    <button type="submit" class="w-full mb-2 rounded text-lg text-white font-semibold border py-1 bg-yellow-500 shadow-lg hover:bg-yellow-600">Sign In</button>
+                </div>
+                </form>
+
+                <div className="mt-6">   
+                    <div className="h-4 border-b-2 border-yellow-500">
+                        <span className="bg-white px-2 text-xs">
+                            New to Ghatgutti?
+                        </span>
+                    </div>
+
+                    <div className="mt-4">
+                    <Link to="/register" class="block w-full mb-2 rounded text-lg text-white font-semibold border py-1 px-2 bg-yellow-500 shadow-lg hover:bg-yellow-600">Create an account</Link>
+                    </div>
+                </div>
+                
+                </div>
+            </div>
+        );
+    }
+}
