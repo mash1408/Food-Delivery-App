@@ -7,12 +7,16 @@ const Customer= require('./Routes/routesCustomer')
 const menu =require('./Routes/listMenu')
 var schedule = require('node-schedule')
 const bodyParser=require('body-parser')
+
+
+
 dotenv.config();
 
 //connect to DB
 mongoose.connect(process.env.DB_CONNECT,
 { useNewUrlParser: true,
-    useFindAndModify: false
+    useFindAndModify: false,
+    useUnifiedTopology: true
 },
 
 ()=>{
@@ -24,13 +28,18 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 //MiddleWares
-app.use(express.json())
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.static('public'));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
 
 //Middleware for authentification
 app.use('/cook', Cook)
 app.use('/customer', Customer)
 app.use('/home', menu)
+
 
 // var j = schedule.scheduleJob('5 * * * * *', function(){
 //     console.log('The world is going to end today.');

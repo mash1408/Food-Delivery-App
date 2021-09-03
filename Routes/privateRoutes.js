@@ -3,6 +3,10 @@ const verify =require('./verifyJWT')
 const Cook =require('../models/Cooks')
 const menu = require('../models/menu')
 const fs =require('fs')
+const Item = require('../models/dishes')
+var multer = require('multer');
+var upload = multer({ dest: "./Dishes" });
+
 var multiparty = require('connect-multiparty'),
     multipartyMiddleware = multiparty({ uploadDir: './Dishes' });
 
@@ -28,14 +32,23 @@ router.get('/your-items',verify,async (req,res)=>{
 
 })
 
-router.post('/save-menu-item',[verify, multipartyMiddleware],async (req,res)=>{
+
+router.post('/save-menu-item',[verify,upload.single('files')],async (req,res)=>{
+    
     const cook = await Cook.findOne({
         _id: req.user
     })
-    fs.rename('./'+ req.files.null.path,'./Dishes/'+req.body.dishName+'.png',()=>{
+    console.log(req.file.path)
+    fs.rename('./'+ req.file.path,'./Dishes/'+req.body.dishName+'.png',()=>{
        console.log('Dish saved')
     })
-    var file = req.files.file;
+    
+    var newItem = new Item();
+    newItem.img.data = fs.readFileSync('./Dishes/'+ req.body.dishName+ '.png')
+    newItem.img.contentType = 'image/png';
+    newItem.save();
+
+    // var file = req.files.file;
     const menuItem = new menu({
         dishName: req.body.dishName,
         description: req.body.description,
