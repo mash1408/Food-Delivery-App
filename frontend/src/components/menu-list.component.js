@@ -1,0 +1,57 @@
+import React, {Component} from "react";
+import {Link} from 'react-router-dom';
+import axios  from "axios";
+
+const Item = props => (
+    <div>
+        <tr>
+            <td>{props.item._id}</td>
+            <td>{props.item.dishName}</td>
+            <td>{props.item.description}</td>
+            <td>{props.item.price}</td>
+            <td>{props.item.recipe}</td>
+            <td>{props.item.cookid}</td>
+        </tr>
+    </div>
+  )
+
+
+export default class MenuList extends Component {
+    constructor(props){
+        super(props);
+
+        this.state = {items: []};
+    }
+
+    componentDidMount(){
+        axios.get("http://localhost:3005/home/menu")
+        .then(response => {
+            this.setState({items: response.data})
+        })
+        .catch((error) => {
+            console.log(error);
+        }) 
+    }
+
+    itemsList(){
+        return this.state.items.map(currentitem => {
+            return <Item item={currentitem} key={currentitem._id}/>
+        });
+    }
+
+    render(){
+        return (
+          <div>
+        <tr>
+            <td>Id</td>
+            <td>Dish Name</td>
+            <td>Desription</td>
+            <td>Price</td>
+            <td>Recipe</td>
+            <td>Cook Id</td>
+        </tr>
+            { this.itemsList() }
+          </div>  
+        );
+    }
+}

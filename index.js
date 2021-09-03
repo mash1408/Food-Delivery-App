@@ -7,7 +7,7 @@ const Customer= require('./Routes/routesCustomer')
 const menu =require('./Routes/listMenu')
 var schedule = require('node-schedule')
 const bodyParser=require('body-parser')
-
+const cors = require('cors')
 
 
 dotenv.config();
@@ -33,9 +33,14 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-
+const corsOptions ={
+    origin:'*', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200,
+ }
 
 //Middleware for authentification
+app.use(cors(corsOptions))
 app.use('/cook', Cook)
 app.use('/customer', Customer)
 app.use('/home', menu)
