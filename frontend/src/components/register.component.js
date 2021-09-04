@@ -11,8 +11,7 @@ function Register(props) {
     const confirmPassword = useFormInput('');
     const [error, setError] = useState(null);
 
-    const handleRegister = () => {
-         
+    const handleRegister = () => {    
     const request={
         "chefName": chefName.value,
         "address": address.value,

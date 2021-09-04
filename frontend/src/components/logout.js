@@ -2,19 +2,11 @@ import React from 'react';
 import { getUser, removeUserSession } from '../Utils/common';
  
 function logout(props) {
-  const user = getUser();
- 
   // handle click event of logout button
-  const handleLogout = () => {
-    removeUserSession();
-    props.history.push('/login');
-  }
- 
-  return (
-    <div>
-      <input type="button" onClick={handleLogout} value="Logout" />
-    </div>
-  );
+  console.log('sda')  
+  removeUserSession();
+   //window.history.push('/login');
+
 }
  
 export default logout;

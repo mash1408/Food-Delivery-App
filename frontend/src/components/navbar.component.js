@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Link} from 'react-router-dom';
-
+import logout from "./logout"
 export default class Navbar extends Component {
 
     render(){
@@ -27,7 +27,10 @@ export default class Navbar extends Component {
                              <Link to="/register" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">Register</Link>
                         </li>
                         <li className="nav-item">
-                             <Link to="/logout" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">Logout</Link>
+                             <button className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" onClick={logout}>Logout</button>
+                        </li>
+                        <li className="nav-item">
+                             <Link to="/cart" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">Register</Link>
                         </li>
                     </ul>
                     </div>
