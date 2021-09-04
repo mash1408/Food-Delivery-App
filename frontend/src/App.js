@@ -4,6 +4,7 @@ import Navbar from "./components/navbar.component";
 import MenuList from "./components/menu-list.component";
 import Login from "./components/login.component";
 import Register from "./components/register.component";
+import Logout from './components/logout'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/home/menu" exact component={MenuList}/>
         <Route path="/login" exact component={Login}/>
         <Route path="/register" exact component={Register}/>
+        <Route path="/logout" exact component={Logout}/>
       </Router>
     </div>
   );

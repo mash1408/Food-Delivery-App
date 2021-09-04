@@ -41,17 +41,16 @@ export default class MenuList extends Component {
 
     render(){
         return (
-          <div>
-        <tr>
-            <td>Id</td>
-            <td>Dish Name</td>
-            <td>Desription</td>
-            <td>Price</td>
-            <td>Recipe</td>
-            <td>Cook Id</td>
-        </tr>
-            { this.itemsList() }
-          </div>  
+              <div class="flex flex-wrap gap-10 justify-center">
+                <div class="px-40 py-40 border-yellow-500 border-2"></div>
+                <div class="px-40 py-40 border-yellow-500 border-2"></div>
+                <div class="px-40 py-40 border-yellow-500 border-2"></div>
+                <div class="px-40 py-40 border-yellow-500 border-2"></div>
+                <div class="px-40 py-40 border-yellow-500 border-2"></div>
+                <div class="px-40 py-40 border-yellow-500 border-2"></div>
+                <div class="px-40 py-40 border-yellow-500 border-2"></div>
+            </div>
+            // { this.itemsList() }  
         );
     }
 }
