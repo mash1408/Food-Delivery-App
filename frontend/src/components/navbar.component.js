@@ -26,6 +26,9 @@ export default class Navbar extends Component {
                         <li className="nav-item">
                              <Link to="/register" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">Register</Link>
                         </li>
+                        <li className="nav-item">
+                             <Link to="/logout" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">Logout</Link>
+                        </li>
                     </ul>
                     </div>
                 </div>
