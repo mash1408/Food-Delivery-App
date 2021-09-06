@@ -7,7 +7,9 @@ const Customer = require("./Routes/routesCustomer");
 const menu = require("./Routes/listMenu");
 var schedule = require("node-schedule");
 const bodyParser = require("body-parser");
-dotenv.config();
+const cors = require("cors");
+
+require("dotenv").config();
 
 //connect to DB
 mongoose.connect(
@@ -25,14 +27,11 @@ var db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 //MiddleWares
+app.use(cors());
 app.use(express.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
+app.use(bodyParser.urlencoded({ extended: true }));
 
-//Middleware for authentication
+//Middleware for authentification
 app.use("/cook", Cook);
 app.use("/customer", Customer);
 app.use("/home", menu);
