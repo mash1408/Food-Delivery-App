@@ -30,7 +30,7 @@ export default class Navbar extends Component {
                              <button className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" onClick={logout}>Logout</button>
                         </li>
                         <li className="nav-item">
-                             <Link to="/cart" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">Register</Link>
+                             <Link to="/cart" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">Cart</Link>
                         </li>
                     </ul>
                     </div>

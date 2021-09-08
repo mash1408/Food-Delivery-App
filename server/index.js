@@ -1,4 +1,4 @@
-const express =require('express')
+const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
@@ -53,6 +53,6 @@ app.use('/order', order)
 //     // once the job is finished remove the database entry mark it as completed so that it won't run again
 //   });
 
-app.listen(3005, () => {
+app.listen(5000, () => {
   console.log("app is running ");
 });
