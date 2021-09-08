@@ -12,23 +12,34 @@ router.get('/cooks', async(req,res) =>{
     res.send(cookList);
 })
 router.get('/menu',async (req,res)=>{
+  const menuItems = await menu.find({});
+  res.send(menuItems);
+});
 
-    const menuItems= await menu.find({});
-    res.send(menuItems)
-})
+router.get("/menu/cook/:cookid", async (req, res) => {
+  const menuItems = await menu.find({
+    cook_id: req.params.cookid,
+  });
+  res.send(menuItems);
+});
+router.get("/menu/filter/price/:from-:to", async (req, res) => {
+  const menuItems = await menu.find({
+    price: { $gte: req.params.from, $lte: req.params.to },
+  });
+  res.send(menuItems);
+});
 
-router.get('/menu/cook/:cookid',async (req,res)=>{
-    const menuItems= await menu.find({
-        cook_id: req.params.cookid
+router.get("/menu/filter/price/:above", async (req, res) => {
+  let menuItems;
+  if (req.header("price-above")) {
+    menuItems = await menu.find({
+      price: { $gte: req.params.above },
     });
-    res.send(menuItems)
-})
-router.get('/menu/filter/price/:from-:to',async (req,res)=>{
-    const menuItems= await menu.find({
-        price: { $gte: req.params.from, $lte: req.params.to } 
+  } else {
+    menuItems = await menu.find({
+      price: { $lte: req.params.above },
     });
-    res.send(menuItems)
-})
+  }
 
 router.get('/menu/filter/price/:above',async (req,res)=>{
     let menuItems
@@ -71,5 +82,5 @@ router.get('/Dish/:dishName',(req, res) => {
   })
   ps.pipe(res) // <---- this makes a trick with stream error handling
 })
-
-module.exports =router
+});
+module.exports =router;

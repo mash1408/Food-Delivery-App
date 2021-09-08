@@ -7,6 +7,7 @@ import Register from "./components/register.component";
 import Logout from './components/logout'
 import CookList from './components/cook-list.component';
 import CookMenu from './components/cook-menu.component';
+import Cart from './components/cart.component';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/login" exact component={Login}/>
         <Route path="/register" exact component={Register}/>
         <Route path="/logout" exact component={Logout}/>
+        <Route path="/cart" exact component={Cart}/>
       </Router>
     </div>
   );

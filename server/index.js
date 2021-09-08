@@ -1,4 +1,4 @@
-const express =require('express')
+const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
@@ -8,6 +8,7 @@ const menu =require('./Routes/listMenu')
 var schedule = require('node-schedule')
 const bodyParser=require('body-parser')
 const cors = require('cors')
+const order = require('./Routes/orderRoutes')
 
 
 dotenv.config();
@@ -25,7 +26,7 @@ mongoose.connect(process.env.DB_CONNECT,
 }
 )
 var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 //MiddleWares
 app.use(bodyParser.json());
@@ -39,11 +40,12 @@ const corsOptions ={
     optionSuccessStatus:200,
  }
 
-//Middleware for authentification
+//Middleware for auth
 app.use(cors(corsOptions))
 app.use('/cook', Cook)
 app.use('/customer', Customer)
 app.use('/home', menu)
+app.use('/order', order)
 
 
 // var j = schedule.scheduleJob('5 * * * * *', function(){
@@ -51,8 +53,6 @@ app.use('/home', menu)
 //     // once the job is finished remove the database entry mark it as completed so that it won't run again
 //   });
 
-
-
-app.listen(3005 , () =>{
-    console.log('app is running ')
-})
+app.listen(3005, () => {
+  console.log("app is running ");
+});
