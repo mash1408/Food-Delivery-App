@@ -1,26 +1,37 @@
 const mongoose =require('mongoose')
 
 const cookSchema=new mongoose.Schema({
-    chefName:{
+    name:{
         type: String,
         required: true,
         min: 6
     },
-    address:{
+    address: {
         type: String,
         required: true,
-        min: 15
-    },
-    age:{
-        type: Number,
-        required: true,
-        min: 15
+        min:3,
+        max: 255,
     },
     email:{
         type: String,
         required: true,
-        max: 255,
-        min: 6
+        min: 15,
+    },
+    phone:{
+        type: String,
+        required: true,
+        min: 10,
+        max: 15
+    },
+    cuisine:{
+        type: String,
+        required: false,
+    },
+    rating:{
+        type: Number,
+        required: true,
+        min: 0,
+        max: 5
     },
     password:{
         type: String,

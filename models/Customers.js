@@ -1,16 +1,27 @@
 const mongoose =require('mongoose')
 
 const customerSchema=new mongoose.Schema({
-    Name:{
+    name:{
         type: String,
         required: true,
         min: 6
     },
+    address: {
+        type: String,
+        required: true,
+        min: 3,
+        max: 255,
+    },
     email:{
         type: String,
         required: true,
-        max: 255,
-        min: 6
+        min: 15,
+    },
+    phone:{
+        type: String,
+        required: true,
+        min: 10,
+        max: 15
     },
     password:{
         type: String,

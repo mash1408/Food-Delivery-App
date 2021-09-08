@@ -16,15 +16,23 @@ router.post('/register',async (req,res)=>{
         email: req.body.email
     })
     if(emailExist)
-        return res.status(400).send('You are already registered-Email exists')
+        return res.status(400).send('You are already registered with this email')
+
+    const phoneExist =await Customer.findOne({
+        phone: req.body.phone
+    });
+    if(phoneExist)
+    return res.status(400).send('You are already registered with this phone number')
         
     //hash the password from request
     const salt = await bcryptjs.genSalt(10)
     const hashPassPhrase = await bcryptjs.hash(req.body.password, salt)
 
        const customer = new Customer({
-        Name: req.body.Name,
+        name: req.body.name,
         email: req.body.email,
+        phone: req.body.phone,
+        address: req.body.address,
         password: hashPassPhrase
     })
     
@@ -33,7 +41,7 @@ router.post('/register',async (req,res)=>{
         console.log(savedCustomer)
         res.send({
             status: 200,
-            Name: req.Name
+            name: req.name
         })
         
     }
@@ -47,7 +55,7 @@ router.post('/login',async (req,res)=>{
    
     
     //check if email does  exist
-    const cook = await Cook.findOne({
+    const cook = await Customer.findOne({
             email: req.body.email
     })
 

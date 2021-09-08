@@ -6,6 +6,11 @@ const stream = require('stream')
 const util =require('util')
 const Item = require('../models/dishes')
 
+
+router.get('/cooks', async(req,res) =>{
+    const cookList = await Cook.find({});
+    res.send(cookList);
+})
 router.get('/menu',async (req,res)=>{
 
     const menuItems= await menu.find({});
