@@ -1,12 +1,16 @@
-const router = require("express").Router();
-const verify = require("./verifyJWT");
-const Cook = require("../models/Cooks");
-const menu = require("../models/menu").default;
-const fs = require("fs");
-const order = require("../models/order");
-const Customers = require("../models/Customers");
-var multiparty = require("connect-multiparty"),
-  multipartyMiddleware = multiparty({ uploadDir: "./Dishes" });
+const router =require('express').Router()
+const verify =require('./verifyJWT')
+const Cook =require('../models/Cooks')
+const order =require('../models/order')
+const menu = require('../models/menu')
+const fs =require('fs')
+const Item = require('../models/dishes')
+var multer = require('multer');
+var upload = multer({ dest: "./Dishes" });
+
+
+var multiparty = require('connect-multiparty'),
+    multipartyMiddleware = multiparty({ uploadDir: './Dishes' });
 
 router.get("/dashboard", verify, async (req, res) => {
   // res.json({
@@ -29,21 +33,23 @@ router.get("/your-items", verify, async (req, res) => {
   res.send(menuItems);
 });
 
-router.post(
-  "/save-menu-item",
-  [verify, multipartyMiddleware],
-  async (req, res) => {
+
+router.post('/save-menu-item',[verify,upload.single('files')],async (req,res)=>{
+    
     const cook = await Cook.findOne({
-      _id: req.user,
-    });
-    fs.rename(
-      "./" + req.files.null.path,
-      "./Dishes/" + req.body.dishName + ".png",
-      () => {
-        console.log("Dish saved");
-      }
-    );
-    var file = req.files.file;
+        _id: req.user
+    })
+    console.log(req.file.path)
+    fs.rename('./'+ req.file.path,'./Dishes/'+req.body.dishName+'.png',()=>{
+       console.log('Dish saved')
+    })
+    
+    var newItem = new Item();
+    newItem.img.data = fs.readFileSync('./Dishes/'+ req.body.dishName+ '.png')
+    newItem.img.contentType = 'image/png';
+    newItem.save();
+
+    // var file = req.files.file;
     const menuItem = new menu({
       dishName: req.body.dishName,
       description: req.body.description,
@@ -94,26 +100,6 @@ router.delete("/delete-menu-item/:dishName", verify, async function (req, res) {
   } catch (err) {
     res.status(400).send(err);
   }
-});
-
-router.post("/order", verify, async (req, res) => {
-  const customer = await Customers.findOne({
-    _id: req.user,
-  });
-  const { phone, address } = req.body;
-  if (!phone || !address) {
-    return res.status(422).json({ message: "All fields are required" });
-  }
-  const order = new order({
-    customerId: customer._id,
-    items: req.params.cart.items,
-    paymentType: req.params.paymentType,
-    status: req.params.status,
-    cookId: req.params.cookId,
-    phone,
-    address,
-  });
-  return;
 });
 
 module.exports = router;

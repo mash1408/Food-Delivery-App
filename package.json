@@ -8,12 +8,16 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
     "fs": "^0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.7",
+    "multer": "^1.4.3",
+    "multer-gridfs-storage": "^5.0.1",
     "node-schedule": "^2.0.0",
     "nodemon": "^2.0.12",
-    "react-router-dom": "^5.2.1"
+    "react-router-dom": "^5.2.1",
+    "streamsearch": "^0.1.2"
   },
   "name": "auth-module",
   "version": "1.0.0",

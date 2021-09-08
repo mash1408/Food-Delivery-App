@@ -5,6 +5,8 @@ const joi= require('@hapi/joi')
 const bcryptjs= require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const ops = require('./privateRoutes')
+var multer = require('multer');
+var upload = multer({ dest: "./Dishes" });
 
     const schema =joi.object({
         chefName: joi.string().min(6).required(),
@@ -52,8 +54,7 @@ router.post('/register',async (req,res)=>{
     }
 })
 
-router.post('/login',async (req,res)=>{
-   
+router.post('/login',upload.none(),async (req,res)=>{
     
     //check if email does  exist
     const cook = await Cook.findOne({
