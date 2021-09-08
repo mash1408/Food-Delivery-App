@@ -14,7 +14,7 @@ function App() {
       <Router>
         <Navbar/>
         <br/>
-        <Route path="/cooks" exact component={CookList}/>
+        <Route path="/" exact component={CookList}></Route>
         <Route path="/cooks/:cookid" exact component={CookMenu}/>
         <Route path="/menu" exact component={MenuList}/>
         <Route path="/login" exact component={Login}/>

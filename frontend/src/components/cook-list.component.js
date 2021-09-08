@@ -8,7 +8,7 @@ const Cook = props => (
             <div class="shadow-lg hover:shadow-xl py-4">
             <div>
                 <div class="px-4 py-2">
-                <h1 class="text-xl text-left font-gray-700 font-bold">{props.cook.chefName}</h1>
+                <h1 class="text-xl text-left font-gray-700 font-bold">{props.cook.name}</h1>
                 <div class="flex space-x-2 mt-2">
                     <span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">

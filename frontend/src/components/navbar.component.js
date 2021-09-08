@@ -15,7 +15,7 @@ export default class Navbar extends Component {
                     <div className="lg:flex flex-grow items-center" id="example-navbar-warning">
                     <ul className="flex flex-col lg:flex-row list-none ml-auto">
                         <li className="nav-item">   
-                            <Link to="/cooks" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">Home</Link>
+                            <Link to="/" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">Home</Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/menu" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">Menu</Link>

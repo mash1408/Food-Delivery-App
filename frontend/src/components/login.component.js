@@ -11,29 +11,63 @@ function Login(props) {
   const username = useFormInput('');
   const password = useFormInput('');
   const [error, setError] = useState(null);
+  const [isCook, setIsCook] = useState(true);
  
   // handle button click of login form
   const handleLogin = () => {
     setError(null);
     setLoading(true);
-    axios.post('http://localhost:3005/cook/login', { email: username.value, password: password.value }).then(response => {
+
+    if(isCook){
+        axios.post('http://localhost:3005/cook/login', { email: username.value, password: password.value }).then(response => {
+        setLoading(false);
+        setUserSession(response.data);
+        console.log(response)
+        
+      }).catch(error => {
+        setLoading(false);
+      //   if (error.response.status === 401) setError(error.response.data.message);
+      //   else setError("Something went wrong. Please try again later.");
+      });
+    }
+    else{
+      axios.post('http://localhost:3005/customer/login', { email: username.value, password: password.value }).then(response => {
       setLoading(false);
       setUserSession(response.data);
       console.log(response)
       
-    }).catch(error => {
-      setLoading(false);
-    //   if (error.response.status === 401) setError(error.response.data.message);
-    //   else setError("Something went wrong. Please try again later.");
-    });
+      }).catch(error => {
+        setLoading(false);
+      //   if (error.response.status === 401) setError(error.response.data.message);
+      //   else setError("Something went wrong. Please try again later.");
+      });
+    }
+    
   }
  
-  return (   <div class="flex justify-center">
+  const setAccount = (e) => {
+      if(e.target.value == "cook")
+        setIsCook(true);
+      else
+        setIsCook(false);
+  }
+
+  return (   
+  <div class="flex justify-center">
   <div class="border-4 border-yellow-500 px-8 py-4 rounded-lg w-96 mt-10">
   <div>
       <p class="text-2xl font-semibold mt-2">Sign In</p>
   </div>
   <form class="my-2">
+
+    <div>
+        <label class="block text-gray-700 mb-1 text-left text-sm" >
+            Login as
+        </label>
+        <button type="button" value="cook" className={ isCook ? "border-2 border-yellow-500 bg-yellow-500 rounded-l px-3 py-1" : "border-2 border-yellow-500 bg-white rounded-l px-3 py-1"} onClick={setAccount}>Cook</button>
+        <button type="button" value="customer" className={ isCook ? "border-2 border-yellow-500 bg-white rounded-r px-3 py-1" : "border-2 border-yellow-500 bg-yellow-500 rounded-r px-3 py-1"} onClick={setAccount}>Customer</button>
+    </div>
+  
   <div class="mb-2">
       <label class="block text-gray-700 mb-1 text-left text-sm" for="phone">
           Email
