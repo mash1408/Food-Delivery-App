@@ -52,6 +52,7 @@ router.post('/save-menu-item',[verify,upload.single('files')],async (req,res)=>{
     var newItem = new Item();
     newItem.img.data = fs.readFileSync('./Dishes/'+ req.body.dishName+ '.png')
     newItem.img.contentType = 'image/png';
+    newItem.cook =req.user
     await newItem.save();
 
     // var file = req.files.file;
