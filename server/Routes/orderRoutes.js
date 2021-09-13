@@ -6,6 +6,7 @@ const Customer =require('../models/Customers')
 const Menu =require('../models/menu')
 const Order =require('../models/order')
 const expressAsyncHandler =require('express-async-handler')
+const orderScheduler =require('../orderScheduler')
 
   router.post(
     '/',
@@ -13,7 +14,9 @@ const expressAsyncHandler =require('express-async-handler')
       
         const dishes =[...req.body.dishes]
         const quantities =[...req.body.quantities]
-        
+        const schedule =false
+        if("deliveryDate" in req.body)
+            schedule =true
         const orders=[]
       
         for(var i=0; i< dishes.length;i++){
@@ -31,8 +34,13 @@ const expressAsyncHandler =require('express-async-handler')
           
         }
         await Order.insertMany(orders)
-        .then(function (datas, err) {
-          console.log(datas); // Success
+        .then(async function (data, err) {
+          console.log(data); // Success
+          const scheduledOrders=data.map(function(order){
+            if(order.status === "scheduled")
+              return order
+          })
+          orderScheduler(scheduledOrders)
           res
           .status(201)
           .send({ message: 'New Order Created'});

@@ -48,10 +48,6 @@ app.use('/home', menu)
 app.use('/order', order)
 
 
-// var j = schedule.scheduleJob('5 * * * * *', function(){
-//     console.log('The world is going to end today.');
-//     // once the job is finished remove the database entry mark it as completed so that it won't run again
-//   });
 
 app.listen(3005, () => {
   console.log("app is running ");
