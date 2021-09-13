@@ -1,47 +1,47 @@
 const router =require('express').Router()
 const verify =require('./verifyJWTCook')
-const cook =require('../models/Cooks')
-const order =require('../models/order')
+const verifyCustomer =require('./verifyJWTCustomer')
+const Cook =require('../models/Cooks')
+const Customer =require('../models/Customers')
+const Menu =require('../models/menu')
+const Order =require('../models/order')
 const expressAsyncHandler =require('express-async-handler')
 
   router.post(
     '/',
-    verify,
-    expressAsyncHandler(async (req, res) => {
-      if (req.body.orderItems.length === 0) {
-        res.status(400).send({ message: 'Cart is empty' });
-      } else {
-        const order = new order({
-          cook: req.body.orderItems[0].cook,
-          orderItems: req.body.orderItems,
-          shippingAddress: req.body.shippingAddress,
-          paymentMethod: req.body.paymentMethod,
-          itemsPrice: req.body.itemsPrice,
-          totalPrice: req.body.totalPrice,
-          customer: req.customer._id,
-          deliveryDate: req.body.deliveryDate,
-          isDelivered: req.body.isDelivered,
-        });
-        const createdOrder = await order.save();
-        res
+    verifyCustomer,async (req, res) => {
+      
+        const dishes =[...req.body.dishes]
+        const quantities =[...req.body.quantities]
+        
+        const orders=[]
+      
+        for(var i=0; i< dishes.length;i++){
+          
+         const item = await Menu.findOne({dishName: dishes[i]})
+         const cook = item.cook_id
+          const order={
+            dish: item._id,
+            price: item.price,
+            qty: quantities[i],
+            cook: cook._id,
+            customer: req.user._id
+          }
+          orders.push(order)
+          
+        }
+        await Order.insertMany(orders)
+        .then(function (datas, err) {
+          console.log(datas); // Success
+          res
           .status(201)
-          .send({ message: 'New Order Created', order: createdOrder });
-      }
-    })
-  );
-
-  router.get(
-    '/:id',
-    verify,
-    expressAsyncHandler(async (req, res) => {
-      const order = await order.findById(req.params.id);
-      if (order) {
-        res.send(order);
-      } else {
-        res.status(404).send({ message: 'Order Not Found' });
-      }
-    })
-  );
+          .send({ message: 'New Order Created'});
+      })
+        .catch(function (error) {
+          console.log(error) // Failure
+        })
+      }  
+  )
 
   router.delete(
     '/:id',
@@ -59,9 +59,10 @@ const expressAsyncHandler =require('express-async-handler')
 
   router.get(
     '/customer/orders',
-    verify,
+    verifyCustomer,
     expressAsyncHandler(async (req, res) => {
-      const orders = await order.find({ customer: req.customer._id });
+      const customer = await Customer.findById(req.user)
+      const orders = await order.find({ customer: req.customer });
       res.send(orders);
     })
   );
@@ -70,9 +71,7 @@ const expressAsyncHandler =require('express-async-handler')
     '/cook/orders',
     verify,
     expressAsyncHandler(async (req, res) => {
-      const cook = await cook.findOne({
-        _id: req.user
-      })
+      const cook = await Cook.findById(req.user)
       const orders = await order.find({ cook: cook._id });
       res.send(orders);
     })
