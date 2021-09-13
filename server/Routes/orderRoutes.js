@@ -70,7 +70,10 @@ const expressAsyncHandler =require('express-async-handler')
     '/cook/orders',
     verify,
     expressAsyncHandler(async (req, res) => {
-      const orders = await order.find({ cook: req.cook._id });
+      const cook = await cook.findOne({
+        _id: req.user
+      })
+      const orders = await order.find({ cook: cook._id });
       res.send(orders);
     })
   );

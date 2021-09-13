@@ -5,6 +5,7 @@ const menu = require('../models/menu')
 const fs =require('fs')
 const Item = require('../models/dishes')
 var multer = require('multer');
+var path =require("path")
 var upload = multer({ dest: "./Dishes" });
 
 var multiparty = require('connect-multiparty'),
@@ -25,6 +26,7 @@ router.get('/your-items',verify,async (req,res)=>{
     const cook = await Cook.findOne({
         _id: req.user
     })
+    
     const menuItems= await menu.find({
         cook_id: cook._id
     });
@@ -38,15 +40,16 @@ router.post('/save-menu-item',[verify,upload.single('files')],async (req,res)=>{
     const cook = await Cook.findOne({
         _id: req.user
     })
-    console.log(req.file.path)
+     console.log(req.file.path)
     fs.rename('./'+ req.file.path,'./Dishes/'+req.body.dishName+'.png',()=>{
        console.log('Dish saved')
     })
     
+    
     var newItem = new Item();
     newItem.img.data = fs.readFileSync('./Dishes/'+ req.body.dishName+ '.png')
     newItem.img.contentType = 'image/png';
-    newItem.save();
+    await newItem.save();
 
     // var file = req.files.file;
     const menuItem = new menu({
@@ -58,7 +61,15 @@ router.post('/save-menu-item',[verify,upload.single('files')],async (req,res)=>{
     })
     //const changeStream = menu.watch().on('change', data => console.log(data));
     try{
-        
+        fs.readdir('./Dishes', (err, files) => {
+            if (err) throw err;
+          
+            for (const file of files) {
+              fs.unlink(path.join('./Dishes', file), err => {
+                if (err) throw err;
+              });
+            }
+          });
         const savedMenuItem= await menuItem.save()
         res.send({
             status: 200,
