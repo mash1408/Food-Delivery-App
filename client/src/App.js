@@ -8,6 +8,8 @@ import Logout from './components/logout'
 import CookList from './components/cook-list.component';
 import CookMenu from './components/cook-menu.component';
 import Cart from './components/cart.component';
+import orders from "./components/orders"
+import MyComponent from "./components/orderDetails"
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
         <Route path="/cooks/:cookid" exact component={CookMenu}/>
         <Route path="/menu" exact component={MenuList}/>
         <Route path="/login" exact component={Login}/>
+        <Route path="/orders" exact component={orders}/>
         <Route path="/register" exact component={Register}/>
         <Route path="/logout" exact component={Logout}/>
         <Route path="/cart" exact component={Cart}/>
