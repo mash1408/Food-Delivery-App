@@ -9,7 +9,7 @@ export default class Navbar extends Component {
         super(props);
         this.state = {
             show: false,
-            hello: "hello",
+            hello: true,
             date: new Date().toLocaleString()
         };
            this.showModal = this.showModal.bind(this);
