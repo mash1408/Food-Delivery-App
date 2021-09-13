@@ -24,17 +24,7 @@ router.get('/dashboard',verify,async (req,res)=>{
     })
     res.send(cook)
 })
-router.get('/dashboard',verifyCustomer,async (req,res)=>{
-    // res.json({
-    //     welcome:{
-    //         message:"welcome to HealthE"
-    //     }
-    // })
-    const customer = await Customer.findOne({
-        _id: req.user
-    })
-    res.send(cook)
-})
+
 router.get('/your-items',verify,async (req,res)=>{
     const cook = await Cook.findOne({
         _id: req.user

@@ -44,15 +44,22 @@ const expressAsyncHandler =require('express-async-handler')
   )
 
   router.delete(
-    '/:id',
-    verify,
+    '/:dishName',
+    verifyCustomer,
     expressAsyncHandler(async (req, res) => {
-      const order = await order.findById(req.params.id);
-      if (order) {
+      const dish = await Menu.findOne({dishName: req.params.dishName})
+      const order = await Order.findOne({dish: dish._id, customer: req.user});
+      let today = new Date();
+      const buffer =10
+      if(!order)
+      res.status(404).send({ message :"No order found" });
+      let goAhead= order.createdAt.getHours() == today.getHours() && order.createdAt.getMinutes()+buffer < today.getMinutes() 
+      if (goAhead) {
         const deleteOrder = await order.remove();
         res.send({ message: 'Order Deleted', order: deleteOrder });
       } else {
-        res.status(404).send({ message: 'Order Not Found' });
+        const message =  "Unable to delete order after 10 minutes"
+        res.status(404).send({ message });
       }
     })
   );
@@ -61,8 +68,7 @@ const expressAsyncHandler =require('express-async-handler')
     '/customer/orders',
     verifyCustomer,
     expressAsyncHandler(async (req, res) => {
-      const customer = await Customer.findById(req.user)
-      const orders = await order.find({ customer: req.customer });
+      const orders = await Order.find({ customer: req.user });
       res.send(orders);
     })
   );
@@ -71,92 +77,35 @@ const expressAsyncHandler =require('express-async-handler')
     '/cook/orders',
     verify,
     expressAsyncHandler(async (req, res) => {
-      const cook = await Cook.findById(req.user)
-      const orders = await order.find({ cook: cook._id });
+      const orders = await order.find({ cook: req.user });
       res.send(orders);
     })
   );
 
   router.put(
-    '/:id/accept',
+    '/setStatus/:status/:id',
     verify,
     expressAsyncHandler(async (req, res) => {
+      if(!(req.params.status in ["placed", "scheduled","accepted","preparing","rejected","delivered"]))
+        return res.status(400),json({
+          error : "invalid status"
+        })
       const order = await Order.findById(req.params.id);
       if (order) {
-        order.status = 'accepted';
-  
+        order.status = req.params.status;
+        if(req.params.status === "rejected"){
+          const deleteOrder = await order.remove();
+        return res.send({ message: 'Order Removed', order: deleteOrder });
+        }
         const updatedOrder = await order.save();
-        res.send({ message: 'Order Accepted', order: updatedOrder });
+        res.send({ message: 'Order '+ req.params.status, order: updatedOrder });
       } else {
         res.status(404).send({ message: 'Order Not Found' });
       }
     })
   );
 
-  router.put(
-    '/:id/preparing',
-    verify,
-    expressAsyncHandler(async (req, res) => {
-      const order = await Order.findById(req.params.id);
-      if (order) {
-        order.status = 'Preparing';
-  
-        const updatedOrder = await order.save();
-        res.send({ message: 'Food is being Cooked', order: updatedOrder });
-      } else {
-        res.status(404).send({ message: 'Order Not Found' });
-      }
-    })
-  );
 
-  router.put(
-    '/:id/dispatched',
-    verify,
-    expressAsyncHandler(async (req, res) => {
-      const order = await Order.findById(req.params.id);
-      if (order) {
-        order.status = 'dispatched';
-  
-        const updatedOrder = await order.save();
-        res.send({ message: 'Food is handed over to Delivery Service', order: updatedOrder });
-      } else {
-        res.status(404).send({ message: 'Order Not Found' });
-      }
-    })
-  );
-
-  router.put(
-    '/:id/reject',
-    verify,
-    expressAsyncHandler(async (req, res) => {
-      const order = await Order.findById(req.params.id);
-      if (order) {
-        order.status='rejected';
-  
-        const updatedOrder = await order.save();
-        res.send({ message: 'Order Rejected', order: updatedOrder });
-      } else {
-        res.status(404).send({ message: 'Order Not Found' });
-      }
-    })
-  );
-
-  router.put(
-    '/:id/deliver',
-    verify,
-    expressAsyncHandler(async (req, res) => {
-      const order = await Order.findById(req.params.id);
-      if (order) {
-        order.isDelivered = true;
-        order.deliveryDate = Date.now();
-  
-        const updatedOrder = await order.save();
-        res.send({ message: 'Order Delivered', order: updatedOrder });
-      } else {
-        res.status(404).send({ message: 'Order Not Found' });
-      }
-    })
-  );
   
   
   module.exports = router;

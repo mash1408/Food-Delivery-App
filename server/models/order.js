@@ -15,7 +15,7 @@ const orderSchema = new mongoose.Schema(
       postalCode: { type: String  }
     },
     paymentMethod: { type: String, default: "COD" },
-    status: { type: String,required: true, enum:["placed", "scheduled"], default: function(){
+    status: { type: String,required: true, enum:["placed", "scheduled","accepted","preparing","rejected","delivered"], default: function(){
         if(!this.deliveryDate)
           return "placed"
         else 
