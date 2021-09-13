@@ -10,7 +10,7 @@ var upload = multer({ dest: "./Dishes" });
 
 router.use('/',ops)
 
-router.post('/register',async (req,res)=>{
+router.post('/register',upload().none(),async (req,res)=>{
        // VALIDATE BEFORE SAVING A USER 
        const {error} = registerValidation(req.body)
     if(error)

@@ -56,6 +56,7 @@ router.get('/menu/filter/price/:above',async (req,res)=>{
     
     res.send(menuItems)
 })
+//latest dish
 router.get('/dish',function(req, res) {
     Item.findOne({}, 'img createdAt', function(err, img) {
         if (err)
@@ -64,6 +65,16 @@ router.get('/dish',function(req, res) {
         res.contentType('json');
         res.send(img);
     }).sort({ createdAt: 'desc' })
+});
+//all the dishes
+router.get('/dish-all',function(req, res) {
+  Item.find({}, 'img createdAt', function(err, img) {
+      if (err)
+          res.send(err);
+
+      res.contentType('json');
+      res.send(img);
+  })
 });
 
 

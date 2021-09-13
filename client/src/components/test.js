@@ -36,9 +36,11 @@ class Image extends Component {
          const dishes = []
          for (const [index, value] of img.entries()) {
             dishes.push(<img
+                key={index}
                 src={value}
                 alt='Helpful alt text'/>)
         }
+        console.log(dishes)
         return (
             <div>
             {dishes}
