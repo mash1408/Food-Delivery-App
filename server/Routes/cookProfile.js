@@ -1,6 +1,8 @@
 const router =require('express').Router()
-const verify =require('./verifyJWT')
+const verify =require('./verifyJWTCook')
+const verifyCustomer =require('./verifyJWTCustomer')
 const Cook =require('../models/Cooks')
+const Customer =require('../models/Cooks')
 const menu = require('../models/menu')
 const fs =require('fs')
 const Item = require('../models/dishes')
@@ -18,6 +20,17 @@ router.get('/dashboard',verify,async (req,res)=>{
     //     }
     // })
     const cook = await Cook.findOne({
+        _id: req.user
+    })
+    res.send(cook)
+})
+router.get('/dashboard',verifyCustomer,async (req,res)=>{
+    // res.json({
+    //     welcome:{
+    //         message:"welcome to HealthE"
+    //     }
+    // })
+    const customer = await Customer.findOne({
         _id: req.user
     })
     res.send(cook)

@@ -4,7 +4,7 @@ const { registerValidation,loginValidation } =require('../validation')
 const joi= require('@hapi/joi')
 const bcryptjs= require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const ops = require('./privateRoutes')
+const ops = require('./cookProfile')
 var multer = require('multer');
 var upload = multer({ dest: "./Dishes" });
 

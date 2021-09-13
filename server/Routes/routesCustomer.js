@@ -4,8 +4,13 @@ const { registerValidationCustomer,loginValidation } =require('../validation')
 const joi= require('@hapi/joi')
 const bcryptjs= require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const ops = require("./customerProfile")
+var multer = require('multer');
+var upload = multer();
 
-router.post('/register',async (req,res)=>{
+
+router.use('/',ops)
+router.post('/register',upload.none(),async (req,res)=>{
        // VALIDATE BEFORE SAVING A USER 
        const {error} = registerValidationCustomer(req.body)
     if(error)
@@ -51,7 +56,7 @@ router.post('/register',async (req,res)=>{
     }
 })
 
-router.post('/login',async (req,res)=>{
+router.post('/login',upload.none(),async (req,res)=>{
    
     
     //check if email does  exist

@@ -1,5 +1,5 @@
 const router =require('express').Router()
-const verify =require('./verifyJWT')
+const verify =require('./verifyJWTCook')
 const cook =require('../models/Cooks')
 const order =require('../models/order')
 const expressAsyncHandler =require('express-async-handler')
