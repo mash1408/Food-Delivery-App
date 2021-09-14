@@ -87,7 +87,7 @@ function Login(props) {
   </div>
 
   <div className="mb-2">
-      <input type="button" className="w-full mb-2 rounded text-lg text-white font-semibold border py-1 bg-yellow-500 shadow-lg hover:bg-yellow-600"value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
+      <input type="button" className="w-full mb-2 rounded text-lg text-white font-semibold border py-1 bg-yellow-500 shadow-lg hover:bg-yellow-600" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
       
   </div>
   </form>

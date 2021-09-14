@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
-
+import load from "../Rainbow.gif"
 const Item = props => (
     <div>
         <tr>
@@ -19,7 +19,8 @@ class Menu extends Component {
         super(props);
         this.state = {
             img: [],
-            items: []
+            items: [],
+            loading: true
         };
        
     }
@@ -38,6 +39,7 @@ class Menu extends Component {
     componentDidMount() {
         axios.get("http://localhost:3005/home/menu")
         .then(response => {
+            console.log(response.data)
             this.setState({items: response.data})
         })
         .catch((error) => {
@@ -48,6 +50,7 @@ class Menu extends Component {
         .then((data) => {
              var base64Flag = 'data:image/jpeg;base64,';
             var temp=[]
+            this.state.loading= false
             data.forEach(element => {
                 var imageStr = this.arrayBufferToBase64(element.img.data.data);
                 temp.push(base64Flag + imageStr)
@@ -87,10 +90,16 @@ class Menu extends Component {
             </div>
                 )
         }
-        console.log(dishes)
+        const loading= this.state.loading
         return (
+            <div>
+                <img src={load} style={{display: this.state.loading?'block': 'none' }}></img>
             <div className="flex flex-wrap gap-10 justify-center" >
+            
             {dishes}
+           
+          </div>
+          
           </div>
           
 
