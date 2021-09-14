@@ -1,6 +1,7 @@
 import { useRef,useEffect } from "react";
 import mapboxgl from 'mapbox-gl';
 import "../App.css";
+import Navbar from './navbar.component';
 
 mapboxgl.accessToken ='pk.eyJ1IjoibWFzaDE0MDgiLCJhIjoiY2tybWlxcmgxMWthYjJ3dGoxMXRlZ3YyZSJ9.Ler-SblIXMyAWcVNeyyAcg'
   
@@ -38,6 +39,7 @@ function Home() {
     return (
         
       <div className="App">
+        <Navbar/>
         <div class=" grid grid-rows-5  grid-flow-col gap-4">
             <div class="flex flex-wrap bg-red-300">
                 <div class=" px-64 sm:flex-grow py-64 bg-red-400"></div>

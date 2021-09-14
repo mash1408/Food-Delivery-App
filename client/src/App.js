@@ -12,12 +12,11 @@ import orders from "./components/orders"
 import home from "./components/home"
 import MyComponent from "./components/orderDetails"
 import AddDish from "./components/addDish"
+import Dashboard from './components/dashboard.component';
 function App() {
   return (
     <div className="App">
       <Router>
-        <Navbar/>
-        <br/>
         <Route path="/add/Dish" exact component={AddDish}></Route>
         <Route path="/" exact component={home}></Route>
         <Route path="/cooks/:cookid" exact component={CookMenu}/>
@@ -27,6 +26,7 @@ function App() {
         <Route path="/register" exact component={Register}/>
         <Route path="/logout" exact component={Logout}/>
         <Route path="/cart" exact component={Cart}/>
+        <Route path="/dashboard" component={Dashboard}/>
       </Router>
     </div>
   );

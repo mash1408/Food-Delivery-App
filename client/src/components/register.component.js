@@ -1,6 +1,7 @@
 import React, {Component,useState } from "react";
 import {Link} from 'react-router-dom';
 import axios  from "axios";
+import Navbar from "./navbar.component";
 
 function Register(props) {
     const [loading, setLoading] = useState(false);
@@ -53,6 +54,8 @@ function Register(props) {
   }
  
   return ( 
+      <div>
+          <Navbar/>
     <div className="flex justify-center">
     <div className="border-4 border-yellow-500 px-8 py-4 rounded-lg w-auto">
     <div>
@@ -140,6 +143,7 @@ function Register(props) {
     </div>
     
     </div>
+</div>
 </div>
   );
 }
