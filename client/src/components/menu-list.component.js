@@ -42,13 +42,30 @@ export default class MenuList extends Component {
     render(){
         return (
               <div class="flex flex-wrap gap-10 justify-center">
-                <div class="px-40 py-40 border-yellow-500 border-2"></div>
-                <div class="px-40 py-40 border-yellow-500 border-2"></div>
-                <div class="px-40 py-40 border-yellow-500 border-2"></div>
-                <div class="px-40 py-40 border-yellow-500 border-2"></div>
-                <div class="px-40 py-40 border-yellow-500 border-2"></div>
-                <div class="px-40 py-40 border-yellow-500 border-2"></div>
-                <div class="px-40 py-40 border-yellow-500 border-2"></div>
+                <div class=" border-yellow-500 border-2">
+                    <div class="px-40 py-32  bg-blue-500"></div>
+                    <div class="px-40 py-10  bg-green-500"></div>
+                </div>
+                <div class=" border-yellow-500 border-2">
+                    <div class="px-40 py-32  bg-blue-500"></div>
+                    <div class="px-40 py-10  bg-green-500"></div>
+                </div>
+                <div class=" border-yellow-500 border-2">
+                    <div class="px-40 py-32  bg-blue-500"></div>
+                    <div class="px-40 py-10  bg-green-500"></div>
+                </div>
+                <div class=" border-yellow-500 border-2">
+                    <div class="px-40 py-32  bg-blue-500"></div>
+                    <div class="px-40 py-10  bg-green-500"></div>
+                </div>
+
+                <div class=" border-yellow-500 border-2">
+                    <div class="px-40 py-32  bg-blue-500"></div>
+                    <div class="px-40 py-10  bg-green-500"></div>
+                </div>
+                <div class=" border-yellow-500 border-2">
+                    <div class="px-40 py-32  bg-blue-500"></div>
+                </div>
             </div>
             // { this.itemsList() }  
         );

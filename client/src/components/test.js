@@ -42,7 +42,7 @@ class Image extends Component {
         }
         console.log(dishes)
         return (
-            <div>
+            <div class="flex flex-wrap gap-10 justify-center">
             {dishes}
           </div>
 

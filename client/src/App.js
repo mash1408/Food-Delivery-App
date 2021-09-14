@@ -11,13 +11,14 @@ import Cart from './components/cart.component';
 import orders from "./components/orders"
 import home from "./components/home"
 import MyComponent from "./components/orderDetails"
-
+import AddDish from "./components/addDish"
 function App() {
   return (
     <div className="App">
       <Router>
         <Navbar/>
         <br/>
+        <Route path="/add/Dish" exact component={AddDish}></Route>
         <Route path="/" exact component={home}></Route>
         <Route path="/cooks/:cookid" exact component={CookMenu}/>
         <Route path="/menu" exact component={MenuList}/>
