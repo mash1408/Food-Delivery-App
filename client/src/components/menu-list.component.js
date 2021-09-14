@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {Link} from 'react-router-dom';
 import axios  from "axios";
-import Navbar from "./navbar.component";
 
 const Item = props => (
     <div>
@@ -45,8 +44,6 @@ export default class MenuList extends Component {
 
     render(){
         return (
-            <div>
-                <Navbar/>
               <div class="flex flex-wrap gap-10 justify-center">
                 <div class="w-80 h-96 border-yellow-500 border-2">
                     <div class="w-full h-5/6  bg-blue-500">
@@ -95,8 +92,7 @@ export default class MenuList extends Component {
                 </div>
               
             </div>
-            // { this.itemsList() }  
-            </div>
+           
         );
     }
 }

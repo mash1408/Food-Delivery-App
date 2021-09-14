@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import load from "../Rainbow.gif"
+
 const Item = props => (
     <div>
         <tr>
@@ -73,7 +74,7 @@ class Menu extends Component {
             dishes.push(
             <div
             key={index}
-            className="w-80 h-96 border-yellow-500 border-2"
+            className="animated fadeIn w-80 h-96 border-yellow-500 border-2"
             >
                 <div
                 className=" w-full h-5/6  bg-blue-500"
@@ -92,11 +93,11 @@ class Menu extends Component {
         }
         const loading= this.state.loading
         return (
-            <div>
-                <img src={load} style={{display: this.state.loading?'block': 'none' }}></img>
+            <div className="h-screen">
+                <img src={load} className="animate-pulse m-auto" style={{display: this.state.loading?'block': 'none' }}></img>
             <div className="flex flex-wrap gap-10 justify-center" >
-            
             {dishes}
+            
            
           </div>
           
