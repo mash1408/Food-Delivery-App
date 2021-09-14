@@ -12,7 +12,7 @@ import orders from "./components/orders"
 import home from "./components/home"
 import MyComponent from "./components/orderDetails"
 import AddDish from "./components/addDish"
-import Image from "./components/listMenu"
+import Menu from "./components/listMenu"
 
 function App() {
   return (
@@ -29,7 +29,7 @@ function App() {
         <Route path="/register" exact component={Register}/>
         <Route path="/logout" exact component={Logout}/>
         <Route path="/cart" exact component={Cart}/>
-        <Route path="/test" exact component={Image}/>
+        <Route path="/test" exact component={Menu}/>
       </Router>
     </div>
   );

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {Link} from 'react-router-dom';
 import axios  from "axios";
+import Navbar from "./navbar.component";
 
 const Cook = props => (
     <div class="bg-white border-2 border-yellow-500">
@@ -51,10 +52,13 @@ export default class CookList extends Component {
 
     render(){
         return (
+            <div>
+                <Navbar/>
             <div class="container mx-auto p-12 rounded-xl">
                 <div class="sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 space-y-4 sm:space-y-0">
                     { this.itemsList() }
                 </div>
+            </div>
             </div>
         );
     }
