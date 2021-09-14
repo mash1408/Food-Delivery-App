@@ -56,9 +56,9 @@ function Home() {
                 </div>
             </div>
 
-            <div class="flex flex-wrap bg-green-300">
-                <div class=" px-64 sm:flex-grow py-64 bg-red-400"></div>
-                    <div class="px-64  sm:flex-grow py-64 bg-blue-400"></div>
+            <div class="justify-center flex flex-wrap bg-yellow-500">
+                <div class="flex-grow sm:flex-grow-0 sm:px-64 py-64 bg-red-400"></div>
+                   
             </div>
 
             
