@@ -9,6 +9,7 @@ import CookList from './components/cook-list.component';
 import CookMenu from './components/cook-menu.component';
 import Cart from './components/cart.component';
 import orders from "./components/orders"
+import home from "./components/home"
 import MyComponent from "./components/orderDetails"
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
       <Router>
         <Navbar/>
         <br/>
-        <Route path="/" exact component={CookList}></Route>
+        <Route path="/" exact component={home}></Route>
         <Route path="/cooks/:cookid" exact component={CookMenu}/>
         <Route path="/menu" exact component={MenuList}/>
         <Route path="/login" exact component={Login}/>
