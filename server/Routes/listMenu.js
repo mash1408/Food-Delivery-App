@@ -12,7 +12,14 @@ router.get('/cooks', async(req,res) =>{
     res.send(cookList);
 })
 router.get('/menu',async (req,res)=>{
-  const menuItems = await menu.find({});
+  const menuItems = await menu.find().populate({
+  path:'cook_id',
+  select: {
+    phone:1,
+    name: 1,
+  }
+  })
+  console.log(menuItems)
   res.send(menuItems);
 });
 
@@ -40,6 +47,7 @@ router.get("/menu/filter/price/:above", async (req, res) => {
       price: { $lte: req.params.above },
     });
   }
+});
 
 router.get('/menu/filter/price/:above',async (req,res)=>{
     let menuItems
@@ -56,6 +64,8 @@ router.get('/menu/filter/price/:above',async (req,res)=>{
     
     res.send(menuItems)
 })
+
+
 //latest dish
 router.get('/dish',function(req, res) {
     Item.findOne({}, 'img createdAt', function(err, img) {
@@ -65,7 +75,9 @@ router.get('/dish',function(req, res) {
         res.contentType('json');
         res.send(img);
     }).sort({ createdAt: 'desc' })
+    
 });
+
 //all the dishes
 router.get('/dish-all',function(req, res) {
   Item.find({}, 'img createdAt', function(err, img) {
@@ -93,5 +105,4 @@ router.get('/Dish/:dishName',(req, res) => {
   })
   ps.pipe(res) // <---- this makes a trick with stream error handling
 })
-});
 module.exports =router;
