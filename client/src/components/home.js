@@ -3,7 +3,7 @@ import mapboxgl from "mapbox-gl";
 import logo from "../img/logo.png";
 import filter from "../img/filter.png";
 import Round from "../img/Round.png";
-import location1 from "../img/location1.png";
+import locator from "../img/locator.png";
 import "../App.css";
 import Navbar from "./navbar.component";
 
@@ -99,7 +99,7 @@ function Home() {
               <div class="mx-auto">
                 <img
                   class="mx-auto my-8 mb-0 mx-14 w-96 p-5"
-                  src={location1}
+                  src={locator}
                   alt="logo"
                 />
               </div>
