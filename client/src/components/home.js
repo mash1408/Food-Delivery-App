@@ -42,6 +42,7 @@ function Home() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div className="App">
+      <Navbar />
       <div class=" grid grid-rows-5  grid-flow-col gap-4">
         <div class="h-screen flex flex-wrap ">
           <div class=" sm:flex-grow">
@@ -92,47 +93,47 @@ function Home() {
           <div class="w-11/12 sm:w-1/2 " ref={mapContainerRef}></div>
         </div>
 
-        <div class="flex flex-wrap bg-red-300">
-          <div class=" w-48 sm:flex-grow  sm:px-32 h-64 bg-yellow-400">
-            <div class="bg-pink-400">
+        <div class="flex flex-wrap ">
+          <div class=" w-48 sm:flex-grow  sm:px-32 h-64 ">
+            <div class=" mt-40 w-48">
               <div class="mx-auto">
                 <img
-                  class="mx-auto my-8 mb-0 mx-14 w-96"
+                  class="mx-auto my-8 mb-0 mx-14 w-96 p-5"
                   src={location1}
                   alt="logo"
                 />
               </div>
-              <h4 class="font-bold">Map System Locator</h4>
+              <h4 class="font-bold text-lg">Map System Locator</h4>
               <p class="items-center">
                 Locate the nearby home-cooks for delicious food!
               </p>
             </div>
           </div>
-          <div class=" w-48 sm:flex-grow  sm:px-32 h-64 bg-yellow-400">
-            <div class="bg-pink-400">
+          <div class=" w-48 sm:flex-grow  sm:px-32 h-64 ">
+            <div class=" mt-40 w-48">
               <div class="mx-auto">
                 <img
-                  class="mx-auto my-8 mb-0 mx-14 w-96"
+                  class="mx-auto my-8 mb-0 mx-14 w-96 p-5"
                   src={filter}
                   alt="logo"
                 />
               </div>
-              <h4 class="font-bold">Filter Your Options</h4>
+              <h4 class="font-bold text-lg">Filter Your Options</h4>
               <p class="items-center">
                 Choose from a variety of veg/non-veg multicuisine dishes!
               </p>
             </div>
           </div>
-          <div class=" w-48 sm:flex-grow  sm:px-32 h-64 bg-yellow-400">
-            <div class="bg-pink-400">
+          <div class=" w-48 sm:flex-grow  sm:px-32 h-64 ">
+            <div class=" mt-40 w-52">
               <div class="mx-auto">
                 <img
-                  class="mx-auto my-8 mb-0 mx-14 w-96"
+                  class="mx-auto my-8 mb-0 mx-14 w-96 p-5"
                   src={Round}
                   alt="logo"
                 />
               </div>
-              <h4 class="font-bold">Lightening-Fast Delivery</h4>
+              <h4 class="font-bold text-lg">Lightening-Fast Delivery</h4>
               <p class="items-center">
                 Experience superfast delivery straight from home kitchens!
               </p>
