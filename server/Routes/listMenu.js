@@ -94,4 +94,12 @@ router.get('/Dish/:dishName',(req, res) => {
   ps.pipe(res) // <---- this makes a trick with stream error handling
 })
 });
+
+router.get("/dish/:id", async (req, res) => {
+  const menuitem = await menu.find({
+    _id: req.params.id,
+  });
+  res.send(menuitem);
+});
+
 module.exports =router;

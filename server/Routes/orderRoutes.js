@@ -113,8 +113,5 @@ const orderScheduler =require('../orderScheduler')
     })
   );
 
-
-  
-  
   module.exports = router;
 
