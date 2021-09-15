@@ -1,8 +1,7 @@
 // return the user data from the session storage
-export const getUser = () => {
+export const getCook = () => {
     const userStr = sessionStorage.getItem('user');
     if (userStr) return JSON.parse(userStr);
-    else return null;
   }
 
   export const setUserType = (account) => {
@@ -23,9 +22,13 @@ export const getUser = () => {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('user');
   }
+
+  export const setCookDetails = (cook) => {
+    sessionStorage.setItem('user', JSON.stringify(cook));
+  }
    
   // set the token and user from the session storage
-  export const setUserSession = (token, user) => {
+  export const setUserSession = (token) => {
     sessionStorage.setItem('token', token);
-    // sessionStorage.setItem('user', JSON.stringify(user));
+    //console.log(JSON.stringify(data.cook))
   }

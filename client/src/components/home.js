@@ -5,6 +5,7 @@ import filter from "../img/filter.png";
 import Round from "../img/Round.png";
 import location1 from "../img/location1.png";
 import "../App.css";
+import Navbar from "./navbar.component";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoibWFzaDE0MDgiLCJhIjoiY2tybWlxcmgxMWthYjJ3dGoxMXRlZ3YyZSJ9.Ler-SblIXMyAWcVNeyyAcg";

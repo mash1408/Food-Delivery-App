@@ -74,7 +74,7 @@ router.post('/login',upload.none(),async (req,res)=>{
         _id: cook.id
     },
     process.env.SECRET_CODE_COOK)
-    res.header('auth-token-cook', token).send(token)
+    res.header('auth-token-cook', token).send({'token': token, 'cook':cook})
 })
 
 
