@@ -90,21 +90,21 @@ router.get('/dish-all',function(req, res) {
 });
 
 
-router.get('/Dish/:dishName',(req, res) => {
-  const path="./Dishes/"
-  const r = fs.createReadStream(path+ req.params.dishName+ '.png') // or any other way to get a readable stream
-  const ps = new stream.PassThrough() // <---- this makes a trick with stream error handling
-  stream.pipeline(
-   r,
-   ps, // <---- this makes a trick with stream error handling
-   (err) => {
-    if (err) {
-      console.log(err) // No such file or any other kind of error
-      return res.sendStatus(400); 
-    }
-  })
-  ps.pipe(res) // <---- this makes a trick with stream error handling
-});
+// router.get('/Dish/:dishName',(req, res) => {
+//   const path="./Dishes/"
+//   const r = fs.createReadStream(path+ req.params.dishName+ '.png') // or any other way to get a readable stream
+//   const ps = new stream.PassThrough() // <---- this makes a trick with stream error handling
+//   stream.pipeline(
+//    r,
+//    ps, // <---- this makes a trick with stream error handling
+//    (err) => {
+//     if (err) {
+//       console.log(err) // No such file or any other kind of error
+//       return res.sendStatus(400); 
+//     }
+//   })
+//   ps.pipe(res) // <---- this makes a trick with stream error handling
+// });
 
 router.get("/dish/:id", async (req, res) => {
   const menuitem = await menu.find({
