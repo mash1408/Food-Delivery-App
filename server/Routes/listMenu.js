@@ -23,7 +23,7 @@ router.get('/menu',async (req,res)=>{
   res.send(menuItems);
 });
 
-router.get("/menu/cook/:cookid", async (req, res) => {
+router.get("/menu/:cookid", async (req, res) => {
   const menuItems = await menu.find({
     cook_id: req.params.cookid,
   });

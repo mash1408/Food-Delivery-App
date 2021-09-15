@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { setUserSession, setUserType} from '../Utils/common';
+import { setUserSession, setUserType, setCookDetails} from '../Utils/common';
 import {Link, useHistory} from 'react-router-dom';
 import Navbar from './navbar.component';
  
@@ -20,9 +20,10 @@ function Login(props) {
     if(isCook){
         axios.post('http://localhost:3005/cook/login', { email: username.value, password: password.value }).then(response => {
         setLoading(false);
-        setUserSession(response.data);
+        setUserSession(response.data.token);
         setUserType('cook');
-        console.log(response.data)
+        setCookDetails(response.data.cook)
+        //console.log(response.data)
         history.push('/dashboard');
       }).catch(error => {
         setLoading(false);
