@@ -1,5 +1,6 @@
 import { useRef,useEffect } from "react";
 import mapboxgl from 'mapbox-gl';
+import logo from '../img/logo.png';
 import "../App.css";
 import Navbar from './navbar.component';
 
@@ -41,8 +42,53 @@ function Home() {
       <div className="App">
         <Navbar/>
         <div class=" grid grid-rows-5  grid-flow-col gap-4">
-            <div class="flex flex-wrap bg-red-300">
-                <div class=" px-64 sm:flex-grow py-64 bg-red-400"></div>
+            <div class="flex flex-wrap">
+                <div class=" sm:flex-grow">
+                  <div class="mr-10 text-right">
+                      <button class="mt-10">
+                    <a class="w-4 px-5 py-2 mr-4 font-bold" href="#">LOG IN</a>
+                      </button>
+                      <button class="mt-10">
+                    <a class="w-4 px-5 py-2 font-bold bg-yellow-500 rounded"
+                     href="#">SIGN UP </a>              
+                     </button>
+            <div class="mx-auto">
+            <img class="mx-auto my-8 mb-0 mx-14 w-96" src={logo} alt="logo"/>
+            </div>
+
+            <div class="text-center">
+              <h3 class="font-bold">HUNGRY?</h3>
+              <p class="px-8 mb-4 text-sm leading-none">
+                Order your favourite home-cooked meals from amazing home-chefs!
+              </p>
+
+              {/* <div class="px-8">
+                <div class="border-2 border-black">
+                  <input
+                    class=" text-xs text-black placeholder-black rounded outline-none "
+                    type="text"
+                    placeholder="Enter your delivery location"
+                  />
+                  <button>
+                    <span
+                      class="flex  justify-end p-2 text-xs font-medium text-black bg-yellow-500 "
+                    >FIND FOOD</span>
+                  </button>
+                </div>
+              </div> */}
+<div class="flex items-center justify-center ">
+    <div class="flex border-2 border-black rounded">
+        <input type="text" class="px-4 py-2 w-80 placeholder-black" placeholder="Enter your delivery location"/>
+        <button class="px-4 text-white bg-yellow-500 border-l ">
+            Find Food
+        </button>
+    </div>
+</div>
+
+            </div>
+
+          </div>
+                </div>
                 <div class="w-11/12 sm:w-1/2" ref={mapContainerRef}>
                 </div>
             </div>

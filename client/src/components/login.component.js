@@ -76,14 +76,14 @@ function Login(props) {
       <label className="block text-gray-700 mb-1 text-left text-sm" htmlFor="phone">
           Email
       </label>
-      <input  className="appearance-none border-2 rounded w-full py-2 px-3 text-gray-700 text-sm font-semibold leading-tight focus:outline-none focus:shadow-outline focus:border-yellow-500" type="text" {...username} autoComplete="new-password" />
+      <input  className="appearance-none border-2 rounded w-full py-2 px-3 text-gray-700 text-sm font-semibold leading-tight focus:outline-none focus:shadow-outline focus:border-yellow-500" type="text" {...username} autoComplete="new-password" placeholder="Email"/>
   </div>
 
   <div className="mb-4">
-      <label className="block text-gray-700 mb-1 text-left text-sm" htmlFor="password">
+      <label className="block text-gray-700 mb-1 text-left text-sm" htmlFor="password" >
           Passoword
       </label>
-      <input className="appearance-none border-2 rounded w-full py-2 px-3 text-gray-700  text-sm font-semibold  leading-tight focus:outline-none focus:shadow-outline focus:border-yellow-500" type="password" {...password} autoComplete="new-password" />
+      <input className="appearance-none border-2 rounded w-full py-2 px-3 text-gray-700  text-sm font-semibold  leading-tight focus:outline-none focus:shadow-outline focus:border-yellow-500" type="password" {...password} autoComplete="new-password" placeholder="Password"/>
      
   </div>
 

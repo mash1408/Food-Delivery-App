@@ -1,4 +1,6 @@
 import './App.css';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import Navbar from "./components/navbar.component";
 import MenuList from "./components/menu-list.component";
@@ -16,6 +18,10 @@ import Menu from "./components/listMenu"
 import Dashboard from './components/dashboard.component';
 
 function App() {
+  const cart = useSelector((state) => state.cart);
+  const { cartItems } = cart;
+  const dispatch = useDispatch();
+
   return (
     <div className="App">
       <Router>
@@ -30,6 +36,7 @@ function App() {
         <Route path="/cart" exact component={Cart}/>
         <Route path="/test" exact component={Menu}/>
         <Route path="/dashboard" exact component={Dashboard}/>
+        <Route path="/cart/:id?" component={Cart}></Route>
       </Router>
     </div>
   );
