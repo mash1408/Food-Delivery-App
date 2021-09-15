@@ -4,7 +4,15 @@ export const getUser = () => {
     if (userStr) return JSON.parse(userStr);
     else return null;
   }
-   
+
+  export const setUserType = (account) => {
+    sessionStorage.setItem('account', account)
+  }
+  
+  export const getUserType = () => {
+    return sessionStorage.getItem('account');
+  }
+
   // return the token from the session storage
   export const getToken = () => {
     return sessionStorage.getItem('token') || null;

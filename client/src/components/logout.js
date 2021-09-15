@@ -1,12 +1,14 @@
 import React from 'react';
 import { getUser, removeUserSession } from '../Utils/common';
+import {Redirect} from 'react-router-dom';
  
-function logout(props) {
+function Logout(props) {
   // handle click event of logout button
   console.log('sda')  
   removeUserSession();
-   //window.history.push('/login');
-
+  return(
+    <Redirect to="/login"/>
+  );
 }
  
-export default logout;
+export default Logout;

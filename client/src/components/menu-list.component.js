@@ -14,7 +14,10 @@ const Item = props => (
         </tr>
     </div>
   )
-
+  const mystyle = {
+    height: "100%",
+    width: "100%"
+  };
 
 export default class MenuList extends Component {
     constructor(props){
@@ -42,32 +45,54 @@ export default class MenuList extends Component {
     render(){
         return (
               <div class="flex flex-wrap gap-10 justify-center">
-                <div class=" border-yellow-500 border-2">
-                    <div class="px-40 py-32  bg-blue-500"></div>
-                    <div class="px-40 py-10  bg-green-500"></div>
+                <div class="w-80 h-96 border-yellow-500 border-2">
+                    <div class="w-full h-5/6  bg-blue-500">
+                       <img style={mystyle} src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Ym9va3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"></img>
+                    </div>
+                    <div class="w-full h-1/6  bg-green-500">
+                       <div class=""></div>
+                    </div>
+                    
                 </div>
-                <div class=" border-yellow-500 border-2">
-                    <div class="px-40 py-32  bg-blue-500"></div>
-                    <div class="px-40 py-10  bg-green-500"></div>
+                <div class="w-80 h-96 border-yellow-500 border-2">
+                    <div class="w-full h-5/6  bg-blue-500">
+                       <img style={mystyle} src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Ym9va3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"></img>
+                    </div>
+                    <div class="w-full h-1/6  bg-green-500">
+                       <div class=""></div>
+                    </div>
+                    
                 </div>
-                <div class=" border-yellow-500 border-2">
-                    <div class="px-40 py-32  bg-blue-500"></div>
-                    <div class="px-40 py-10  bg-green-500"></div>
+                <div class="w-80 h-96 border-yellow-500 border-2">
+                    <div class="w-full h-5/6  bg-blue-500">
+                       <img style={mystyle} src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Ym9va3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"></img>
+                    </div>
+                    <div class="w-full h-1/6  bg-green-500">
+                       <div class=""></div>
+                    </div>
+                    
                 </div>
-                <div class=" border-yellow-500 border-2">
-                    <div class="px-40 py-32  bg-blue-500"></div>
-                    <div class="px-40 py-10  bg-green-500"></div>
+                <div class="w-80 h-96 border-yellow-500 border-2">
+                    <div class="w-full h-5/6  bg-blue-500">
+                       <img style={mystyle} src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Ym9va3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"></img>
+                    </div>
+                    <div class="w-full h-1/6  bg-green-500">
+                       <div class=""></div>
+                    </div>
+                    
                 </div>
-
-                <div class=" border-yellow-500 border-2">
-                    <div class="px-40 py-32  bg-blue-500"></div>
-                    <div class="px-40 py-10  bg-green-500"></div>
+                <div class="w-80 h-96 border-yellow-500 border-2">
+                    <div class="w-full h-5/6  bg-blue-500">
+                       <img style={mystyle} src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Ym9va3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"></img>
+                    </div>
+                    <div class="w-full h-1/6  bg-green-500">
+                       <div class=""></div>
+                    </div>
+                    
                 </div>
-                <div class=" border-yellow-500 border-2">
-                    <div class="px-40 py-32  bg-blue-500"></div>
-                </div>
+              
             </div>
-            // { this.itemsList() }  
+           
         );
     }
 }
