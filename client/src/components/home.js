@@ -9,6 +9,10 @@ import emaillogo from "../img/email-logo.png";
 import fblogo from "../img/fb-logo.png";
 import instalogo from "../img/insta-logo.png";
 import twitterlogo from "../img/twitter-logo.png";
+import Asset1 from "../img/Asset 1.png";
+import Asset2 from "../img/Asset 2.png";
+import Asset3 from "../img/Asset 3.png";
+import Asset4 from "../img/Asset 4.png";
 import "../App.css";
 import Navbar from "./navbar.component";
 
@@ -74,9 +78,9 @@ function Home() {
               </div>
 
               <div class="text-center">
-                <h3 class="font-bold">HUNGRY?</h3>
-                <p class="px-8 mb-4 text-sm leading-none">
-                  Order your favourite home-cooked meals from amazing
+                <h3 class="font-bold text-lg">HUNGRY?</h3>
+                <p class="px-8 mb-4 text-sm leading-none font-bold text-gray-400 mb-2">
+                  Order your favourite home-cooked meals from amazing <br />
                   home-chefs!
                 </p>
 
@@ -87,7 +91,7 @@ function Home() {
                       class="px-4 py-2 w-80 placeholder-black"
                       placeholder="Enter your delivery location"
                     />
-                    <button class="px-4 text-white bg-yellow-500 border-l ">
+                    <button class="px-4 text-black font-bold bg-yellow-500 border-l hover:bg-yellow-400">
                       Find Food
                     </button>
                   </div>
@@ -147,45 +151,72 @@ function Home() {
         </div>
 
         <div class="flex flex-wrap">
-          <div class=" w-80 sm:flex-grow h-64 bg-red-400 mt-10">
+          <div class=" w-60 sm:flex-grow h-64 bg-red-400 mt-10">
             <div class="mx-auto">
               <img
-                class="mx-auto my-0 mb-0 mx-14  "
+                class=" mx-auto my-0 mb-0 mx-14  "
                 src={Rectangle15}
-                alt="logo"
+                alt="iimage"
               />
             </div>
           </div>
-          <div class="w-44  sm:flex-grow h-70 bg-yellow-500 ">
-            <h2 class="mb-10 mt-12 text-2xl text-white font-bold">ABOUT US</h2>
-            <div class="mx-20 my-16 text-xl text-white">
+          <div class="w-40  sm:flex-grow h-70 bg-yellow-500 ">
+            <h2 class="mb-10 mt-9 text-3xl text-white font-bold">ABOUT US</h2>
+            <div class="mx-20 my-10 text-2xl text-white">
               <p>
                 Away from home? Craving some home cooked nutricious meal? Don’t
-                worry! We’ve got you covered. We at Gharguthi are a bunch of
-                home-cooks who serve comfort food made with love! Gharguthi
-                provide a platform to those housewives and home-cooks who want
-                to provide home-cooked meals made with care and in return would
-                benefit the home-cooks to become financially independent by
-                doing what they love! Gharguthi is a platform that caters
-                varieties of cuisine, prepared with utmost hygiene a to take
-                care of your hunger.
+                worry! We’ve got you covered. We at <br />
+                Gharguthi are a bunch of <br /> home-cooks who serve comfort
+                food made with love! Gharguthi provide a platform to those
+                housewives and home-cooks who want to provide home-cooked meals
+                made with care and in return would benefit the home-cooks to
+                become financially independent by doing what they love!
+                Gharguthi is a platform that caters varieties of cuisine,
+                prepared with utmost hygiene a to take care of your
+                <br /> hunger.
               </p>
             </div>
           </div>
         </div>
 
-        <div class="flex flex-wrap bg-red-300">
-          <div class=" w-48 sm:flex-grow  sm:px-32 h-64 bg-yellow-400 mt-40">
-            <div class="sm:mt-16 p-16 bg-pink-400"></div>
+        <div class="flex flex-wrap  ">
+          <div class=" w-48 sm:flex-grow sm:px-32 h-64  mt-40">
+            <div class="flex w-52 ">
+              <div class="w-52">
+                <img src={Asset3} alt="Asset3" />
+                <p class="font-bold text-xl">Shakuntala Devi</p>
+                <p class="text-lg">Maharashtra</p>
+              </div>
+            </div>
           </div>
-          <div class="w-48  sm:flex-grow sm:px-32 h-64 bg-yellow-100 mt-40">
-            <div class="sm:mb-16 p-16 bg-pink-400"></div>
+          <div class="w-48 sm:flex-grow  h-64  mt-40">
+            <div class="flex mt-14 ml-10 w-52">
+              <div class="  w-52">
+                <img src={Asset4} alt="Asset4" />
+                <div>
+                  <p class="font-bold text-xl">Vanadana Naik</p>
+                  <p class="text-lg">Goa</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class=" w-48 sm:flex-grow sm:px-32 h-64 bg-yellow-400 mt-40">
-            <div class="sm:mt-16 p-16 bg-pink-400"></div>
+          <div class=" w-48 sm:flex-grow  h-64  mt-40">
+            <div class=" flex ml-10 w-52 ">
+              <div class="w-52 ">
+                <img src={Asset1} alt="Asset1" />
+                <p class="font-bold text-xl">Rukmini Patel</p>
+                <p class="text-lg">Gujarat</p>
+              </div>
+            </div>
           </div>
-          <div class=" w-48 sm:flex-grow sm:px-32 h-64 bg-yellow-200 mt-40">
-            <div class="sm:mb-16 p-16 bg-pink-400"></div>
+          <div class=" w-48 sm:flex-grow h-64  mt-40">
+            <div class="flex mt-14 ml-10 w-52">
+              <div class="w-52">
+                <img src={Asset2} alt="Asset2" />
+                <p class="font-bold text-xl">Seema Gaus</p>
+                <p class="text-lg">Karnataka</p>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -210,7 +241,7 @@ function Home() {
                     class="appearance-none bg-transparent border-none w-full text-white mr-3 py-1 px-2 leading-tight focus:outline-none placeholder-yellow-100"
                     type="text"
                     placeholder="Phone Number"
-                    aria-label="Full name"
+                    aria-label="phone"
                     required
                   />
                 </div>
