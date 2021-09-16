@@ -4,6 +4,11 @@ import logo from "../img/logo.png";
 import filter from "../img/filter.png";
 import Round from "../img/Round.png";
 import locator from "../img/locator.png";
+import Rectangle15 from "../img/Rectangle 15.png";
+import emaillogo from "../img/email-logo.png";
+import fblogo from "../img/fb-logo.png";
+import instalogo from "../img/insta-logo.png";
+import twitterlogo from "../img/twitter-logo.png";
 import "../App.css";
 import Navbar from "./navbar.component";
 
@@ -141,28 +146,130 @@ function Home() {
           </div>
         </div>
 
-        <div class="flex flex-wrap bg-green-300">
-          <div class=" w-64 sm:flex-grow h-64 bg-red-400"></div>
-          <div class="w-64  sm:flex-grow h-64 bg-blue-400"></div>
+        <div class="flex flex-wrap">
+          <div class=" w-80 sm:flex-grow h-64 bg-red-400 mt-10">
+            <div class="mx-auto">
+              <img
+                class="mx-auto my-0 mb-0 mx-14  "
+                src={Rectangle15}
+                alt="logo"
+              />
+            </div>
+          </div>
+          <div class="w-44  sm:flex-grow h-70 bg-yellow-500 ">
+            <h2 class="mb-10 mt-12 text-2xl text-white font-bold">ABOUT US</h2>
+            <div class="mx-20 my-16 text-xl text-white">
+              <p>
+                Away from home? Craving some home cooked nutricious meal? Don’t
+                worry! We’ve got you covered. We at Gharguthi are a bunch of
+                home-cooks who serve comfort food made with love! Gharguthi
+                provide a platform to those housewives and home-cooks who want
+                to provide home-cooked meals made with care and in return would
+                benefit the home-cooks to become financially independent by
+                doing what they love! Gharguthi is a platform that caters
+                varieties of cuisine, prepared with utmost hygiene a to take
+                care of your hunger.
+              </p>
+            </div>
+          </div>
         </div>
 
         <div class="flex flex-wrap bg-red-300">
-          <div class=" w-48 sm:flex-grow  sm:px-32 h-64 bg-yellow-400">
+          <div class=" w-48 sm:flex-grow  sm:px-32 h-64 bg-yellow-400 mt-40">
             <div class="sm:mt-16 p-16 bg-pink-400"></div>
           </div>
-          <div class="w-48  sm:flex-grow sm:px-32 h-64 bg-yellow-100">
+          <div class="w-48  sm:flex-grow sm:px-32 h-64 bg-yellow-100 mt-40">
             <div class="sm:mb-16 p-16 bg-pink-400"></div>
           </div>
-          <div class=" w-48 sm:flex-grow sm:px-32 h-64 bg-yellow-400">
+          <div class=" w-48 sm:flex-grow sm:px-32 h-64 bg-yellow-400 mt-40">
             <div class="sm:mt-16 p-16 bg-pink-400"></div>
           </div>
-          <div class=" w-48 sm:flex-grow sm:px-32 h-64 bg-yellow-200">
+          <div class=" w-48 sm:flex-grow sm:px-32 h-64 bg-yellow-200 mt-40">
             <div class="sm:mb-16 p-16 bg-pink-400"></div>
           </div>
         </div>
 
         <div class="justify-center flex flex-wrap bg-yellow-500">
-          <div class="flex-grow sm:flex-grow-0 sm:px-64 py-64 bg-red-400"></div>
+          <div class="flex-grow sm:flex-grow-0 sm:px-64  bg-yellow-500">
+            <form action="#">
+              <h2 class="mb-10 mt-12 text-3xl text-white font-bold">
+                Contact Us
+              </h2>
+              <div class=" flex">
+                <div class="w-1/2 flex items-center border-b border-yellow-200 ">
+                  <input
+                    class=" mr-8 appearance-none bg-transparent border-none w-full text-white mr-3 py-1 px-2 leading-tight focus:outline-none placeholder-yellow-100"
+                    type="text"
+                    placeholder="Name"
+                    aria-label="Name"
+                    required
+                  />
+                </div>
+                <div class="ml-10 w-1/2 flex items-center border-b border-yellow-200">
+                  <input
+                    class="appearance-none bg-transparent border-none w-full text-white mr-3 py-1 px-2 leading-tight focus:outline-none placeholder-yellow-100"
+                    type="text"
+                    placeholder="Phone Number"
+                    aria-label="Full name"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className=" mt-2 flex items-center border-b border-yellow-200">
+                <input
+                  className="appearance-none shadow-b bg-transparent border-none w-full text-white mr-3 py-1 px-2 leading-tight focus:outline-none placeholder-yellow-100"
+                  type="text"
+                  placeholder="Email"
+                  aria-label="Email"
+                  required
+                />
+              </div>
+              <div className="mt-2 flex items-center border-b border-yellow-200">
+                <textarea
+                  class=" pb-20 appearance-none bg-transparent border-none w-full text-white mr-3 py-1 px-2 leading-tight focus:outline-none placeholder-yellow-100"
+                  type="text"
+                  placeholder="Message"
+                  aria-label="Message"
+                  required
+                ></textarea>
+              </div>
+              <div class="mt-4 ">
+                <input
+                  type="button"
+                  class="w-full mb-2 rounded text-lg text-white font-semibold border-none py-1 bg-yellow-400 shadow-lg hover:bg-yellow-600"
+                  value="SEND MESSAGE"
+                />
+              </div>
+            </form>
+            <div class="mt-10">
+              <p class="font-bold text-lg text-white">
+                <img class="inline-block mr-5 " src={emaillogo} alt="e-logo" />
+                gharguthi@gmail.com
+              </p>
+            </div>
+            <div class="mt-10">
+              <p class="font-bold text-lg text-white ">
+                Follow us at:
+                <img
+                  class="inline-block ml-5 mr-5 "
+                  src={instalogo}
+                  alt="e-logo"
+                />
+                <img class="inline-block mr-5 " src={fblogo} alt="e-logo" />
+                <img
+                  class="inline-block mr-5 "
+                  src={twitterlogo}
+                  alt="e-logo"
+                />
+              </p>
+            </div>
+            <div class="mt-5">
+              <p class="text-white">
+                &copy; 2021, Gharguthi.com, Inc. or its affiliates
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
