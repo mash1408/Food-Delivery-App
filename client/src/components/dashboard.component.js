@@ -1,15 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMapMarker, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faMapMarker, faPhone, faEnvelope, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { getToken, getCook } from "../Utils/common";
 import { Redirect } from 'react-router';
 import Navbar  from './navbar.component';
 import axios  from "axios";
 
 const MenuList = props => (
-    <div class="bg-white border-2 border-yellow-500 inline-block">
+    <div class="bg-white border-2 border-yellow-500 shadow-lg hover:shadow-xl ">
         <div class="">
-            <div class="shadow-lg hover:shadow-xl py-4">
+            <div class="py-4">
             <div>
                 <div class="px-4 py-2">
                 <h1 class="text-xl text-left font-gray-700 font-bold">{props.item.dishName}</h1>
@@ -23,6 +23,12 @@ const MenuList = props => (
   )
 
 export default function Dashboard(props){
+    const [dishName, setDishName] = useState('');
+    const [description, setDescription] = useState('');
+    const [recipe, setRecipe] = useState('');
+    const [price, setPrice] = useState(0);
+    const [cookId, setCookId] = useState(getCook()._id);
+
     const [showModal, setShowModal] = React.useState(false);
     const [menuItems, setMenuItems] = useState([]);
 
@@ -36,8 +42,19 @@ export default function Dashboard(props){
 
     const getMenu = () => {
         return menuItems.map(item=> {
-            return (<MenuList item={item} key={item._id} className="border"/>)
+            return (<MenuList item={item} key={item._id} className=""/>)
         });
+    }
+
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+        console.log(getCook()._id);
+        axios.post('http://localhost:3005/cook/add-dish', { dishName: dishName, description: description, recipe: recipe, price: price, cook_id: cookId }).then(response => {
+        console.log(response)
+        window.location.reload();
+      }).catch(error => {
+        console.log(error)
+      });
     }
 
     if(getToken())
@@ -61,16 +78,16 @@ export default function Dashboard(props){
             </div>
 
             <div className="my-6">
-                <div className="flex mx-20">
+                <h1 class="text-yellow-500 m-5 text-xl font-bold">My Dishes</h1>
+                <div className="grid mx-20 grid-cols-3 grid-flow-row gap-x-44 gap-y-12">
                     {getMenu()}
                 </div>
                 <button
-                    className="bg-yellow-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    className="bg-yellow-500 text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mt-10 mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
                     onClick={() => setShowModal(true)}
                 >
-                    Add dish
-                </button>
+                    <span>Add dish</span> <FontAwesomeIcon icon={faPlus} className="ml-2"/></button>
 
                 {showModal ? (
                     <>
@@ -96,30 +113,30 @@ export default function Dashboard(props){
                             </div>
                             {/*body*/}
                             <div className="border relative flex-auto w-full">
-                                <form class="bg-white rounded px-8 my-6">
+                                <form class="bg-white rounded px-8 my-6" onSubmit={handleSubmit}>
                                 <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2 text-left" for="dish-name">
                                     Dish Name
                                 </label>
-                                <input class="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none border-2 focus:border-yellow-500 focus:shadow-outline" id="dish-name" type="text" placeholder="Dish Name"/>
+                                <input onChange={(e) => setDishName(e.target.value)} class="shadow appearance-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none border-2 focus:border-yellow-500 focus:shadow-outline" id="dish-name" type="text" placeholder="Dish Name"/>
                                 </div>
                                 <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2 text-left" for="description">
                                     Description
                                 </label>
-                                <textarea class="shadow appearance-none border-2 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-yellow-500 focus:shadow-outline resize-none" rows="4" id="description" placeholder="Description"></textarea>
+                                <textarea onChange={(e) => setDescription(e.target.value)} class="shadow appearance-none border-2 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-yellow-500 focus:shadow-outline resize-none" rows="4" id="description" placeholder="Description"></textarea>
                                 </div>
                                 <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2 text-left" for="recipe">
                                     Recipe
                                 </label>
-                                <textarea class="shadow appearance-none border-2 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-yellow-500 focus:shadow-outline resize-none" rows="4" id="recipe" placeholder="Recipe"></textarea>
+                                <textarea onChange={(e) => setRecipe(e.target.value)} class="shadow appearance-none border-2 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-yellow-500 focus:shadow-outline resize-none" rows="4" id="recipe" placeholder="Recipe"></textarea>
                                 </div>
                                 <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2 text-left" for="price">
                                     Price
                                 </label>
-                                <input class="shadow appearance-none border-2 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-yellow-500 focus:shadow-outline" id="price" type="number" placeholder="Price"/>
+                                <input onChange={(e) => setPrice(e.target.value)} class="shadow appearance-none border-2 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:border-yellow-500 focus:shadow-outline" id="price" type="number" placeholder="Price"/>
                                 </div>
 
                                 <div className="flex items-center justify-end py-4 w-full rounded-b">
@@ -132,10 +149,9 @@ export default function Dashboard(props){
                                 </button>
                                 <button
                                     className="bg-yellow-500 text-white font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                    type="button"
-                                    onClick={() => setShowModal(false)}
+                                    type="submit"
                                 >
-                                    Save Changes
+                                    Add Dish
                                 </button>
                                 </div>
                             </form>

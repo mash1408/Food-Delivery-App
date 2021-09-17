@@ -1,5 +1,6 @@
 const router =require('express').Router()
 const Cook =require('../models/Cooks')
+const Menu =require('../models/menu')
 const { registerValidation,loginValidation } =require('../validation')
 const joi= require('@hapi/joi')
 const bcryptjs= require('bcryptjs')
@@ -77,5 +78,26 @@ router.post('/login',upload.none(),async (req,res)=>{
     res.header('auth-token-cook', token).send({'token': token, 'cook':cook})
 })
 
+router.post('/add-dish', async (req,res) => {
+    const menu = new Menu({
+        dishName: req.body.dishName,
+        description: req.body.description,
+        recipe: req.body.recipe,
+        price: req.body.price,
+        cook_id: req.body.cook_id
+    })
+
+    try{
+        const savedMenu= await menu.save()
+        res.send({
+            status: 200,
+            message: "Dish added successfully"
+        })
+        
+    }
+    catch(err){
+        res.status(400).send(err)
+    }
+})
 
 module.exports =router

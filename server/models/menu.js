@@ -8,8 +8,7 @@ const menuSchema=new mongoose.Schema({
     },
     description:{
         type: String,
-        required: true,
-        min: 15
+        required: true
     },
     price:{
         type: Number,
@@ -18,9 +17,7 @@ const menuSchema=new mongoose.Schema({
     },
     recipe:{
         type: String,
-        required: true,
-        max: 255,
-        min: 6
+        required: true
     },
     cook_id: {
         type: mongoose.Schema.Types.ObjectId,
