@@ -1,10 +1,12 @@
 import React, {Component,useState } from "react";
+import { useHistory } from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import axios  from "axios";
 import Navbar from "./navbar.component";
 
 function Register(props) {
     const [loading, setLoading] = useState(false);
+    const history = useHistory();
     const name =useFormInput('');
     const email =useFormInput('');
     const phone =useFormInput('');
@@ -29,6 +31,7 @@ function Register(props) {
         axios.post('http://localhost:3005/cook/register', request).then(response => {
         setLoading(false);
         console.log(response)
+        history.push("/login");
         
         }).catch(error => {
         setLoading(false);
@@ -39,7 +42,7 @@ function Register(props) {
         axios.post('http://localhost:3005/customer/register', request).then(response => {
         setLoading(false);
         console.log(response)
-        
+        history.push("/login");
         }).catch(error => {
         setLoading(false);
             console.log(error)

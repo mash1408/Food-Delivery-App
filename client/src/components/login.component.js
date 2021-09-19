@@ -23,8 +23,8 @@ function Login(props) {
         setUserSession(response.data.token);
         setUserType('cook');
         setCookDetails(response.data.cook)
-        //console.log(response.data)
-        history.push('/dashboard');
+        console.log(response.data)
+        history.push('/');
       }).catch(error => {
         setLoading(false);
       //   if (error.response.status === 401) setError(error.response.data.message);
@@ -37,7 +37,7 @@ function Login(props) {
       setUserSession(response.data);
       setUserType('customer');
       console.log(response.data)
-      history.push('/');
+      history.push('/menu');
       }).catch(error => {
         setLoading(false);
       //   if (error.response.status === 401) setError(error.response.data.message);

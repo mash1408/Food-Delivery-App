@@ -24,6 +24,7 @@ export const getCook = () => {
   }
 
   export const setCookDetails = (cook) => {
+    console.log(cook)
     sessionStorage.setItem('user', JSON.stringify(cook));
   }
    

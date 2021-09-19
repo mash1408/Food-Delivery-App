@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Link} from 'react-router-dom';
 import logout from "./logout"
-import { getToken, getUserType } from "../Utils/common";
+import { getToken, getUserType,removeUserSession } from "../Utils/common";
 
 function Navbar(props){
     const [isLoggedIn, setisLoggedIn] = useState(false);
@@ -32,7 +32,8 @@ function Navbar(props){
                             <Link to="/login" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">Login</Link>
                     </li> :
                     <li className="nav-item">
-                            <Link to="/logout" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" onClick={logout}>Logout</Link>
+                          
+                            <button  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" onClick={()=>{removeUserSession()}}>Logout</button>
                     </li>}
                 </ul>
                 </div>
