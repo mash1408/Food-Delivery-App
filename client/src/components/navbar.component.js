@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import {Link} from 'react-router-dom';
-import logout from "./logout"
 import { getToken, getUserType,removeUserSession } from "../Utils/common";
 
 function Navbar(props){
