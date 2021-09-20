@@ -11,7 +11,6 @@ import CookMenu from './components/cook-menu.component';
 import Cart from './components/cart.component';
 import orders from "./components/orders"
 import home from "./components/home"
-import MyComponent from "./components/orderDetails"
 import AddDish from "./components/addDish"
 import Menu from "./components/listMenu"
 import Dashboard from './components/dashboard.component';

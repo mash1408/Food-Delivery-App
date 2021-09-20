@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import load from "../Rainbow.gif"
+import Navbar from "./navbar.component"
 
 const Item = props => (
     <div>
@@ -95,6 +96,7 @@ class Menu extends Component {
         return (
            
             <div className="h-screen">
+                <Navbar/>
                  <div class=" px-10 mt-10 mb-6 text-yellow-500  font-bold font-mono text-xl border-4 rounded-3xl shadow-2xl border-none to-white "> DISHES</div>
                 <img src={load} className="animate-pulse m-auto" style={{display: this.state.loading?'block': 'none' }}></img>
             <div className="flex flex-wrap gap-10 justify-center" >

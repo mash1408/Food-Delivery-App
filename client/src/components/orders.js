@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom';
 import Modal from './orderDetails.js';
 import axios from  "axios"
 import {getToken} from "../Utils/common"
-
-export default class Navbar extends Component {
+import Navbar from "./navbar.component"
+export default class Orders extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -63,6 +63,7 @@ export default class Navbar extends Component {
         }
         return (
             <div class="mt-0 ">
+            <Navbar/>
             <div class="flex justify-center flex-wrap bg-yellow-500 to-white shadow-xl text-white">
                 <div class="flex-grow border-2 border-yellow-600">All</div>
                 <div class="flex-grow  border-2" onClick={()=>{this.refreshOrders("receiving")}}>Receiving</div>
