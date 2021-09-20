@@ -93,7 +93,9 @@ class Menu extends Component {
         }
         const loading= this.state.loading
         return (
+           
             <div className="h-screen">
+                 <div class=" px-10 mt-10 mb-6 text-yellow-500  font-bold font-mono text-xl border-4 rounded-3xl shadow-2xl border-none to-white "> DISHES</div>
                 <img src={load} className="animate-pulse m-auto" style={{display: this.state.loading?'block': 'none' }}></img>
             <div className="flex flex-wrap gap-10 justify-center" >
             {dishes}

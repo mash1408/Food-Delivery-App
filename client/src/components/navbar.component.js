@@ -22,8 +22,11 @@ function Navbar(props){
                         <Link to="/menu" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">Menu</Link>
                     </li>
                     { getToken() && getUserType()=='cook' ? <li className="nav-item">
-                     <Link to="/dashboard" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">Dashboard</Link>
+                     <Link to="/menu" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">Dashboard</Link>
                     </li>: <li/>}
+                    <li className="nav-item">
+                     <Link to="/dashboard" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">Menu</Link>
+                    </li>
                     { getToken() && getUserType()=='customer' ? <li className="nav-item">
                      <Link to="/cart" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">Cart</Link>
                     </li>: <li/>}

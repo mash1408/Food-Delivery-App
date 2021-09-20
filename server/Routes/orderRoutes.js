@@ -85,7 +85,7 @@ const orderScheduler =require('../orderScheduler')
     '/cook/orders',
     verify,
     expressAsyncHandler(async (req, res) => {
-      const orders = await order.find({ cook: req.user });
+      const orders = await Order.find({ _id: req.user });
       res.send(orders);
     })
   );
