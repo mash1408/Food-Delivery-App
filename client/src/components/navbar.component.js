@@ -27,6 +27,9 @@ function Navbar(props){
                     <li className="nav-item">
                      <Link to="/dashboard" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">Menu</Link>
                     </li>
+                    { getToken() ? <li className="nav-item">
+                     <Link to="/menu" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">My Orders</Link>
+                    </li>: <li/>}
                     { getToken() && getUserType()=='customer' ? <li className="nav-item">
                      <Link to="/cart" className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75">Cart</Link>
                     </li>: <li/>}
